@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 2 · Change in Time: Keep the Strum Moving</title>
+<style>
+  :root{
+    --ink:#2b2620; --soft:#6b6256; --line:#e4dccc; --paper:#fbf7ef;
+    --accent:#a6612f; --accent2:#3b7a5a; --card:#fffdf8; --gold:#caa64a; --ghost:#cabfa9;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font:17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;padding:48px 20px}
+  .wrap{max-width:760px;margin:0 auto}
+  .kicker{letter-spacing:.18em;text-transform:uppercase;font-size:12px;color:var(--accent);font-weight:700;margin:0 0 6px}
+  h1{font-size:32px;line-height:1.12;margin:0 0 8px;font-weight:780}
+  .sub{color:var(--soft);margin:0 0 8px;font-size:18px}
+  .why{background:#fcf3e8;border-radius:12px;padding:14px 18px;color:#6a4a2c;font-size:15px;margin:18px 0 34px;border:1px solid #f0e2cf}
+  h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:40px 0 14px;font-weight:740}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin:0 0 16px}
+  ol{margin:0;padding-left:22px} ol li{margin:0 0 10px}
+  .key{color:var(--accent2);font-weight:700}
+  cite{display:block;font-style:normal;color:var(--soft);font-size:13px;margin-top:8px}
+  a{color:var(--accent)}
+  /* trainer */
+  .timer{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;text-align:center}
+  .chordnow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin:0 0 4px}
+  .target{font-size:80px;font-weight:800;line-height:1;margin:0 0 4px;transition:color .1s,transform .08s}
+  .target.g{color:var(--accent)} .target.c{color:var(--accent2)} .target.beat{transform:scale(1.07)}
+  .change-cue{height:22px;font-weight:740;color:var(--gold);font-size:15px;letter-spacing:.04em;margin-bottom:14px}
+  .grid{display:flex;gap:6px;justify-content:center;margin:6px 0 6px;flex-wrap:wrap}
+  .slot{width:46px;display:flex;flex-direction:column;align-items:center;gap:3px}
+  .arrow{font-size:30px;line-height:1;color:var(--ghost);transition:color .08s,transform .08s}
+  .slot.play .arrow{color:var(--ink)}
+  .slot.on .arrow{color:var(--accent);transform:scale(1.25)}
+  .slot.on.play .arrow{color:var(--accent2)}
+  .lbl{font-size:12px;color:var(--soft);font-variant-numeric:tabular-nums}
+  .slot.beat .lbl{color:var(--ink);font-weight:700}
+  .rate{display:flex;align-items:center;justify-content:center;gap:18px;margin:18px 0}
+  .rate button{background:#efe7d8;color:var(--ink);width:46px;height:46px;border-radius:50%;font-size:24px;border:none;cursor:pointer;padding:0}
+  .rate .val b{font-size:32px;font-weight:780;color:var(--accent);font-variant-numeric:tabular-nums}
+  .rate .val span{display:block;font-size:12px;color:var(--soft);letter-spacing:.08em;text-transform:uppercase}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin:0 0 4px}
+  .seg button{background:var(--card);border:none;padding:9px 16px;font:inherit;font-size:14px;cursor:pointer;color:var(--soft)}
+  .seg button.active{background:var(--accent);color:#fff;font-weight:680}
+  .big{background:var(--accent2);color:#fff;font-size:20px;padding:16px 40px;border:none;border-radius:18px;cursor:pointer;font-weight:680;width:100%;max-width:340px}
+  .hint{color:var(--soft);font-size:14px;margin:16px 0 0}
+  .rule{border-left:3px solid var(--gold);background:#fcf7e9;border-radius:0 10px 10px 0;padding:14px 18px;margin:26px 0 0;font-size:15px;color:#6a5320}
+  .ask{border-left:3px solid var(--accent2);background:#eef6f0;border-radius:0 10px 10px 0;padding:14px 18px;margin:24px 0 0;font-size:15px;color:#2f5742}
+  footer{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;color:var(--soft);font-size:13px}
+  @media print{.timer .rate,.timer .big,.seg{display:none}body{background:#fff;padding:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">Lesson 2 · Foundation</p>
+  <h1>Change in Time — Keep the Strum Moving</h1>
+  <p class="sub">Change chords without ever stopping your strumming hand.</p>
+  <div class="why">
+    <b>Why this is the bridge.</b> In Lesson 1 you changed G⇄C on your own clock.
+    A song doesn't wait. The single skill that turns drills into music is this:
+    your strumming hand <b>keeps moving like a pendulum</b> and never pauses — even
+    when your fretting hand isn't ready yet. Stop the strum to "fix" a chord and
+    you've stopped the song. Keep it moving and you'll play in time long before
+    every change is perfect.
+  </div>
+
+  <h2>The one idea: never stop the pendulum</h2>
+  <div class="card">
+    <ol>
+      <li><span class="key">The hand is a metronome.</span> Your strumming arm
+      swings down–up–down–up continuously, in time, whether or not it hits the
+      strings. It does not pause for the chord change.</li>
+      <li><span class="key">Change on the way.</span> Lift your fretting fingers
+      and move to the next shape during the <b>last up-strum of the bar</b> — a
+      hair early — so they land as the next bar begins.</li>
+      <li><span class="key">If you're not ready, strum anyway.</span> Fingers not
+      down yet? Let the strum brush muted strings and catch up on the next beat.
+      A muffled strum in time beats a clean strum that's late.</li>
+      <li><span class="key">Slow enough to win.</span> Set a tempo where you make
+      the change every single bar without stopping. Only then nudge it up.</li>
+    </ol>
+    <cite>Principle: JustinGuitar — <a href="https://www.justinguitar.com/guitar-lessons/forcing-the-changes-bc-145">Forcing the Changes</a> &amp;
+    “<a href="https://community.justinguitar.com/t/keep-your-strumming-hand-moving/159231">keep your strumming hand moving</a>.”</cite>
+  </div>
+
+  <h2>The trainer — hands-free, in time (≈8 min)</h2>
+  <div class="card" style="padding:14px 16px 4px">
+    <div class="seg" id="patternSeg" style="margin-bottom:8px">
+      <button data-p="downs" class="active">Down on every beat</button>
+      <button data-p="old">Old Faithful (D&nbsp;DU&nbsp;UDU)</button>
+    </div>
+  </div>
+  <div class="timer">
+    <p class="chordnow">strum this chord this bar</p>
+    <div class="target g" id="target">G</div>
+    <div class="change-cue" id="cue">&nbsp;</div>
+
+    <div class="grid" id="grid"></div>
+
+    <div class="rate">
+      <button id="slower" aria-label="slower">−</button>
+      <div class="val"><b id="bpm">60</b><span>beats / min</span></div>
+      <button id="faster" aria-label="faster">+</button>
+    </div>
+    <button class="big" id="play">Start</button>
+    <p class="hint" id="hint">Hit Start, then strum along. Bold arrows = strum the
+    strings; faded arrows = your hand still swings but misses. The chord flips
+    each bar — watch for <b>“get ready →”</b> on beat 4.</p>
+  </div>
+
+  <div class="rule">
+    <b>Golden rule of this lesson:</b> if you have to choose between a clean chord
+    and a steady strum — <b>keep the strum steady.</b> Rhythm is the skeleton of
+    music; a slightly buzzy chord in time still sounds like a song, a perfect
+    chord out of time does not.
+  </div>
+
+  <h2>Make it music (≈3 min)</h2>
+  <div class="card">
+    Pick a slow tempo on "Down on every beat" and play <b>two bars of G, two bars
+    of C</b>, round and round, never stopping the hand. That four-bar loop is a
+    real chord progression you'll meet in dozens of songs. When it feels easy,
+    switch to <b>Old Faithful</b> at the same tempo — same job, more groove.
+  </div>
+
+  <div class="ask">
+    <b>Ask your teacher.</b> Strum hand tensing up? Changes always landing a beat
+    late? Not sure when to lift your fingers? Tell me what's happening and we'll
+    isolate it. When you can loop G–C on Old Faithful at a comfortable tempo
+    without stopping, message me — that unlocks Lesson 3 (your first fingerpicking).
+  </div>
+
+  <footer>
+    Lesson 2 of an ongoing plan · strum patterns in
+    <a href="../reference/strumming-patterns.html">reference/strumming-patterns.html</a> ·
+    daily template in <a href="../reference/15-minute-practice-routine.html">reference/15-minute-practice-routine.html</a> ·
+    sources in <a href="../RESOURCES.md">RESOURCES.md</a>.
+  </footer>
+</div>
+
+<script>
+// 8 eighth-note slots per bar. Count labels and which slots are "played".
+const COUNT = ['1','&','2','&','3','&','4','&'];
+const DIR   = ['↓','↑','↓','↑','↓','↑','↓','↑'];   // pendulum: downs on beats, ups off-beats
+const PATTERNS = {
+  downs: [true,false,true,false,true,false,true,false],          // D _ D _ D _ D _
+  old:   [true,false,true,true,false,true,true,true]             // D _ D U _ U D U  ("D DU UDU")
+};
+let pattern='downs', bpm=60, step=0, bar=0, iv=null, running=false, ac=null;
+
+const gridEl=document.getElementById('grid'), targetEl=document.getElementById('target'),
+      cueEl=document.getElementById('cue'), bpmEl=document.getElementById('bpm'),
+      playBtn=document.getElementById('play'), hintEl=document.getElementById('hint');
+
+function buildGrid(){
+  gridEl.innerHTML='';
+  const play=PATTERNS[pattern];
+  for(let i=0;i<8;i++){
+    const s=document.createElement('div');
+    s.className='slot'+(play[i]?' play':'')+(i%2===0?' beat':'');
+    s.innerHTML=`<div class="arrow">${DIR[i]}</div><div class="lbl">${COUNT[i]}</div>`;
+    gridEl.appendChild(s);
+  }
+}
+function click(accent){
+  if(!ac) ac=new (window.AudioContext||window.webkitAudioContext)();
+  const o=ac.createOscillator(), g=ac.createGain(), t=ac.currentTime;
+  o.frequency.value=accent?1100:760;
+  g.gain.setValueAtTime(0.001,t);
+  g.gain.exponentialRampToValueAtTime(accent?0.5:0.32,t+0.004);
+  g.gain.exponentialRampToValueAtTime(0.001,t+0.07);
+  o.connect(g).connect(ac.destination); o.start(t); o.stop(t+0.08);
+}
+function setChord(){ const onG = bar%2===0;
+  targetEl.textContent=onG?'G':'C'; targetEl.className='target '+(onG?'g':'c'); }
+function tick(){
+  const slots=gridEl.children;
+  for(const s of slots) s.classList.remove('on');
+  slots[step].classList.add('on');
+  if(step%2===0) click(step===0);            // metronome click on quarter-note beats, accent beat 1
+  if(step===0){ targetEl.classList.add('beat'); setTimeout(()=>targetEl.classList.remove('beat'),110); }
+  cueEl.textContent = step===6 ? 'get ready → change on “1”' : ' ';
+  // advance
+  step++;
+  if(step>=8){ step=0; bar++; setChord(); }
+}
+function start(){
+  running=true; playBtn.textContent='Stop'; step=0; bar=0; setChord();
+  hintEl.innerHTML='Keep the hand swinging on every arrow — strike on the bold ones, miss on the faded ones. Don’t stop to fix a chord.';
+  tick(); iv=setInterval(tick, (60000/bpm)/2);   // eighth-note resolution
+}
+function stop(){running=false; clearInterval(iv); iv=null; playBtn.textContent='Start';
+  for(const s of gridEl.children) s.classList.remove('on'); cueEl.textContent=' ';}
+playBtn.onclick=()=>running?stop():start();
+
+function setBpm(v){bpm=Math.max(40,Math.min(120,v)); bpmEl.textContent=bpm;
+  if(running){clearInterval(iv); iv=setInterval(tick,(60000/bpm)/2);} }
+document.getElementById('faster').onclick=()=>setBpm(bpm+5);
+document.getElementById('slower').onclick=()=>setBpm(bpm-5);
+
+document.querySelectorAll('#patternSeg button').forEach(b=>{
+  b.onclick=()=>{document.querySelectorAll('#patternSeg button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active'); pattern=b.dataset.p; buildGrid();};
+});
+buildGrid(); bpmEl.textContent=bpm;
+</script>
+</body>
+</html>

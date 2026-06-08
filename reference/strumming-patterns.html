@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reference · Strumming Patterns</title>
+<style>
+  :root{--ink:#2b2620;--soft:#6b6256;--line:#e4dccc;--paper:#fbf7ef;--accent:#a6612f;--card:#fffdf8;--ghost:#cabfa9}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font:17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;padding:48px 20px}
+  .wrap{max-width:680px;margin:0 auto}
+  .kicker{letter-spacing:.18em;text-transform:uppercase;font-size:12px;color:var(--accent);font-weight:700;margin:0 0 6px}
+  h1{font-size:28px;margin:0 0 6px;font-weight:760}
+  .sub{color:var(--soft);margin:0 0 28px}
+  .pat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:0 0 14px}
+  .pat h3{margin:0 0 4px;font-size:18px}
+  .pat .desc{color:var(--soft);font-size:14px;margin:0 0 12px}
+  .grid{display:flex;gap:5px}
+  .slot{width:42px;text-align:center}
+  .slot .arrow{font-size:26px;line-height:1;color:var(--ghost)}
+  .slot.play .arrow{color:var(--ink);font-weight:700}
+  .slot .lbl{font-size:12px;color:var(--soft);font-variant-numeric:tabular-nums}
+  .slot.beat .lbl{color:var(--ink);font-weight:700}
+  .note{border-left:3px solid var(--accent);background:#fcf3e8;border-radius:0 10px 10px 0;padding:12px 16px;margin:24px 0 0;font-size:15px;color:#6a4a2c}
+  footer{margin-top:28px;border-top:1px solid var(--line);padding-top:12px;color:var(--soft);font-size:13px}
+  a{color:var(--accent)}
+  @media print{body{background:#fff;padding:0}.pat{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">Reference · reusable</p>
+  <h1>Strumming Patterns</h1>
+  <p class="sub">↓ = down-strum · ↑ = up-strum · faded = hand still swings but
+  misses the strings. Count out loud: “1 &amp; 2 &amp; 3 &amp; 4 &amp;”.</p>
+
+  <div class="pat" id="downs"></div>
+  <div class="pat" id="old"></div>
+
+  <div class="note">
+    <strong>The rule under every pattern:</strong> the hand never stops. Downs
+    always fall on the numbers, ups on the “&amp;”s — that's what keeps you in
+    time. A pattern just chooses which of those swings actually hit the strings.
+  </div>
+
+  <footer>
+    Old Faithful from JustinGuitar —
+    <a href="https://www.justinguitar.com/guitar-lessons/the-strumming-pattern-b1-404">THE Strumming Pattern</a>.
+    Trainer: <a href="../lessons/0002-change-in-time-keep-strumming.html">Lesson 2</a>.
+  </footer>
+</div>
+<script>
+const COUNT=['1','&','2','&','3','&','4','&'], DIR=['↓','↑','↓','↑','↓','↑','↓','↑'];
+function render(id,title,desc,play){
+  let g='';
+  for(let i=0;i<8;i++) g+=`<div class="slot${play[i]?' play':''}${i%2===0?' beat':''}">
+    <div class="arrow">${play[i]?DIR[i]:'·'}</div><div class="lbl">${COUNT[i]}</div></div>`;
+  document.getElementById(id).innerHTML=`<h3>${title}</h3><div class="desc">${desc}</div><div class="grid">${g}</div>`;
+}
+render('downs','Down on every beat','Start here. Four steady down-strums. All you think about is changing the chord on beat 1.',
+  [true,false,true,false,true,false,true,false]);
+render('old','Old Faithful · D DU UDU','The workhorse pattern behind countless songs. The missing down-strum on beat 3 gives it its bounce.',
+  [true,false,true,true,false,true,true,true]);
+</script>
+</body>
+</html>
