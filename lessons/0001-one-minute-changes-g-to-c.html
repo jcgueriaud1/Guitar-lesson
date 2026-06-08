@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 1 · One Minute Changes: G ⇄ C</title>
+<style>
+  :root{
+    --ink:#2b2620; --soft:#6b6256; --line:#e4dccc; --paper:#fbf7ef;
+    --accent:#a6612f; --accent2:#3b7a5a; --card:#fffdf8; --gold:#caa64a;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font:17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    padding:48px 20px;
+  }
+  .wrap{max-width:760px;margin:0 auto}
+  .kicker{letter-spacing:.18em;text-transform:uppercase;font-size:12px;color:var(--accent);font-weight:700;margin:0 0 6px}
+  h1{font-size:32px;line-height:1.12;margin:0 0 8px;font-weight:780}
+  .sub{color:var(--soft);margin:0 0 8px;font-size:18px}
+  .why{background:#fcf3e8;border-radius:12px;padding:14px 18px;color:#6a4a2c;font-size:15px;margin:18px 0 34px;border:1px solid #f0e2cf}
+  h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:40px 0 14px;font-weight:740}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin:0 0 16px}
+  ol{margin:0;padding-left:22px} ol li{margin:0 0 10px}
+  .key{color:var(--accent2);font-weight:700}
+  /* chord diagrams */
+  .chords{display:flex;gap:28px;flex-wrap:wrap;justify-content:center;margin:6px 0 4px}
+  .chord{text-align:center}
+  .chord .name{font-weight:780;font-size:20px;margin-bottom:8px;color:var(--ink)}
+  svg{display:block}
+  /* timer */
+  .timer{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;text-align:center}
+  .clock{font-variant-numeric:tabular-nums;font-size:64px;font-weight:780;letter-spacing:1px;line-height:1;margin:4px 0 2px}
+  .clock.run{color:var(--accent2)}
+  .count{font-size:15px;color:var(--soft);margin-bottom:18px}
+  .tally{font-variant-numeric:tabular-nums;font-size:88px;font-weight:800;color:var(--accent);line-height:.9;margin:6px 0}
+  .hint{color:var(--soft);font-size:14px;margin:0 0 18px}
+  .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  button{
+    font:inherit;font-weight:680;cursor:pointer;border:none;border-radius:999px;padding:13px 26px;
+    transition:transform .06s ease, filter .15s ease;
+  }
+  button:active{transform:translateY(1px)}
+  .primary{background:var(--accent);color:#fff}
+  .big{background:var(--accent2);color:#fff;font-size:22px;padding:20px 40px;border-radius:20px;width:100%;max-width:360px}
+  .ghost{background:#efe7d8;color:var(--ink)}
+  .best{margin-top:16px;color:var(--soft);font-size:14px}
+  .best b{color:var(--gold)}
+  .scale{display:flex;justify-content:space-between;font-size:13px;color:var(--soft);max-width:420px;margin:14px auto 0}
+  .bar{height:8px;border-radius:999px;background:#efe7d8;max-width:420px;margin:6px auto 0;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--gold));transition:width .25s}
+  .ask{border-left:3px solid var(--accent2);background:#eef6f0;border-radius:0 10px 10px 0;padding:14px 18px;margin:34px 0 0;font-size:15px;color:#2f5742}
+  footer{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;color:var(--soft);font-size:13px}
+  a{color:var(--accent)}
+  cite{display:block;font-style:normal;color:var(--soft);font-size:13px;margin-top:6px}
+  @media print{.timer .row,.bar{display:none}body{background:#fff;padding:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">Lesson 1 · Foundation</p>
+  <h1>One Minute Changes: G ⇄ C</h1>
+  <p class="sub">Make one chord change clean, fast, and automatic.</p>
+  <div class="why">
+    <b>Why this, why first.</b> You already know the shapes — your bottleneck is
+    the <em>change</em>. G⇄C is the change to own first: it's everywhere in
+    beginner songs, and it forces a big hand reposition, so cracking it makes the
+    others feel easy. This is the foundation the whole mission stands on.
+  </div>
+
+  <h2>The two shapes</h2>
+  <div class="card">
+    <div class="chords">
+      <div class="chord"><div class="name">G major</div><div id="diagG"></div></div>
+      <div class="chord"><div class="name">C major</div><div id="diagC"></div></div>
+    </div>
+    <p style="text-align:center;color:var(--soft);font-size:14px;margin:10px 0 0">
+      ● = finger, number = which finger · ○ = open string · ✕ = don't play
+    </p>
+  </div>
+
+  <h2>The one idea: minimal movement</h2>
+  <div class="card">
+    <ol>
+      <li><span class="key">Find the pivot.</span> Going G→C, your
+      <b>finger 1</b> only slides a little and your hand shape barely opens.
+      Don't lift the whole hand off the neck — move as little as possible.</li>
+      <li><span class="key">Move as a unit.</span> Try to land all fingers
+      <em>together</em>, not one at a time. Aim them at the new shape before they
+      touch down.</li>
+      <li><span class="key">Air changes.</span> Lift just off the strings and
+      switch shapes in the air, over and over, with no pressing. Train the shape
+      first, the pressing second.</li>
+      <li><span class="key">Clean &gt; fast.</span> Press, strum once, check
+      every note rings. Only speed up when it's clean. Never drill a buzz.</li>
+    </ol>
+    <cite>Method: JustinGuitar — <a href="https://www.justinguitar.com/guitar-lessons/one-minute-changes-exercise-b1-110">One Minute Changes Exercise</a>.</cite>
+  </div>
+
+  <h2>The drill — do it now (≈7 min)</h2>
+  <div class="timer">
+    <div class="clock" id="clock">60</div>
+    <div class="count">seconds left</div>
+    <div class="tally" id="tally">0</div>
+    <p class="hint" id="hint">Each time you arrive at a clean chord, count it.
+    Tap <b>+1</b> or press the <b>spacebar</b>. G→C is one, C→G is two…</p>
+    <button class="big primary" id="plus">+1 &nbsp;change</button>
+    <div class="row" style="margin-top:16px">
+      <button class="ghost" id="start">Start 60 s</button>
+      <button class="ghost" id="reset">Reset</button>
+    </div>
+    <div class="bar"><i id="fill"></i></div>
+    <div class="scale"><span>0</span><span>30 · keep going</span><span>60 = 🎯 one/sec</span></div>
+    <div class="best" id="best">Personal best: —</div>
+  </div>
+  <p style="color:var(--soft);font-size:14px;margin:14px 2px 0">
+    Most people start somewhere between <b>5 and 20</b>. That's completely normal.
+    The number isn't the point — <em>watching it climb over days</em> is. Run it
+    2–3 times, rest your hand between rounds.
+  </p>
+
+  <h2>Make it music (≈4 min)</h2>
+  <div class="card">
+    Count a slow <b>1–2–3–4</b> out loud. Strum G once on beat 1, let beats 2–3–4
+    ring while you get your fingers to C, strum C on the next beat 1. The goal
+    isn't speed — it's <b>changing in time without stopping the count</b>. If you
+    have to pause, slow the count down until you don't.
+  </div>
+
+  <div class="ask">
+    <b>I'm your teacher — ask me anything.</b> A note buzzing? Not sure which
+    finger pivots? Hand cramping? Tell me in chat and we'll fix it before it
+    becomes a habit. When you've done this a few days, send me your best score and
+    I'll set Lesson 2.
+  </div>
+
+  <footer>
+    Lesson 1 of an ongoing plan · routine template in
+    <a href="../reference/15-minute-practice-routine.html">reference/15-minute-practice-routine.html</a> ·
+    sources tracked in <a href="../RESOURCES.md">RESOURCES.md</a>.
+  </footer>
+</div>
+
+<script>
+// ---- chord diagram renderer ----
+// frets: array of 6 (low E -> high E). -1 = mute, 0 = open, n = fret.
+// fingers: array of 6, finger number to print on the dot (0/'' = none).
+function drawChord(el, frets, fingers){
+  const W=132,H=160,L=22,T=34,cols=5,rows=4;
+  const dx=(W-2*L)/(cols-1), dy=(H-T-14)/rows;
+  const x=i=>L+i*dx, y=f=>T+(f-0.5)*dy;
+  let s=`<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`;
+  s+=`<rect x="${L-2}" y="${T-6}" width="${W-2*L+4}" height="6" rx="2" fill="#2b2620"/>`; // nut
+  for(let f=0;f<=rows;f++) s+=`<line x1="${L}" y1="${T+f*dy}" x2="${W-L}" y2="${T+f*dy}" stroke="#c9bfa9" stroke-width="1.4"/>`;
+  for(let c=0;c<cols;c++) s+=`<line x1="${x(c)}" y1="${T}" x2="${x(c)}" y2="${T+rows*dy}" stroke="#c9bfa9" stroke-width="1.4"/>`;
+  for(let st=0;st<6;st++){
+    const fr=frets[st];
+    if(fr===-1){ s+=`<text x="${x(st)}" y="${T-12}" text-anchor="middle" font-size="13" fill="#9a8f7c">✕</text>`; }
+    else if(fr===0){ s+=`<circle cx="${x(st)}" cy="${T-13}" r="5.5" fill="none" stroke="#6b6256" stroke-width="1.6"/>`; }
+    else{
+      s+=`<circle cx="${x(st)}" cy="${y(fr)}" r="9" fill="#a6612f"/>`;
+      if(fingers[st]) s+=`<text x="${x(st)}" y="${y(fr)+4}" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">${fingers[st]}</text>`;
+    }
+  }
+  s+='</svg>';
+  el.innerHTML=s;
+}
+// G major (low->high): 3 2 0 0 0 3  · fingers 2 1 _ _ _ 3
+drawChord(document.getElementById('diagG'), [3,2,0,0,0,3], [2,1,0,0,0,3]);
+// C major: x 3 2 0 1 0 · fingers _ 3 2 _ 1 _
+drawChord(document.getElementById('diagC'), [-1,3,2,0,1,0], [0,3,2,0,1,0]);
+
+// ---- timer + tally ----
+const clock=document.getElementById('clock'), tallyEl=document.getElementById('tally'),
+      fill=document.getElementById('fill'), bestEl=document.getElementById('best');
+let left=60,count=0,iv=null,running=false;
+const KEY='omc_g_c_best';
+function showBest(){const b=localStorage.getItem(KEY);bestEl.innerHTML=b?`Personal best: <b>${b}</b> changes`:'Personal best: —';}
+function render(){clock.textContent=left;tallyEl.textContent=count;fill.style.width=Math.min(100,count/60*100)+'%';}
+function stop(done){
+  clearInterval(iv);iv=null;running=false;clock.classList.remove('run');
+  if(done){
+    const b=+(localStorage.getItem(KEY)||0);
+    if(count>b){localStorage.setItem(KEY,count);showBest();
+      document.getElementById('hint').innerHTML='🎉 <b>New personal best!</b> Rest your hand, then go again.';}
+    else document.getElementById('hint').innerHTML='Time! Note your score, shake out the hand, run it again.';
+  }
+}
+document.getElementById('start').onclick=()=>{
+  if(running)return;left=60;count=0;running=true;render();clock.classList.add('run');
+  iv=setInterval(()=>{left--;render();if(left<=0)stop(true);},1000);
+};
+document.getElementById('reset').onclick=()=>{stop(false);left=60;count=0;render();
+  document.getElementById('hint').innerHTML='Each time you arrive at a clean chord, count it. Tap <b>+1</b> or press <b>spacebar</b>.';};
+document.getElementById('plus').onclick=()=>{count++;render();};
+document.addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();count++;render();}});
+render();showBest();
+</script>
+</body>
+</html>
