@@ -47,6 +47,15 @@
   .ghost{background:#efe7d8;color:var(--ink)}
   .best{margin-top:16px;color:var(--soft);font-size:14px}
   .best b{color:var(--gold)}
+  .cue{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin:0 0 4px}
+  .target{font-size:96px;font-weight:800;line-height:1;margin:4px 0 6px;transition:color .1s,transform .1s}
+  .target.beat{transform:scale(1.08)}
+  .target.g{color:var(--accent)} .target.c{color:var(--accent2)}
+  .rate{display:flex;align-items:center;justify-content:center;gap:18px;margin:10px 0 20px}
+  .rate button{background:#efe7d8;color:var(--ink);width:48px;height:48px;border-radius:50%;font-size:24px;padding:0}
+  .rate .val{font-variant-numeric:tabular-nums;min-width:120px}
+  .rate .val b{font-size:34px;font-weight:780;color:var(--accent)}
+  .rate .val span{display:block;font-size:12px;color:var(--soft);letter-spacing:.08em;text-transform:uppercase}
   .scale{display:flex;justify-content:space-between;font-size:13px;color:var(--soft);max-width:420px;margin:14px auto 0}
   .bar{height:8px;border-radius:999px;background:#efe7d8;max-width:420px;margin:6px auto 0;overflow:hidden}
   .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--gold));transition:width .25s}
@@ -98,27 +107,32 @@
     <cite>Method: JustinGuitar — <a href="https://www.justinguitar.com/guitar-lessons/one-minute-changes-exercise-b1-110">One Minute Changes Exercise</a>.</cite>
   </div>
 
-  <h2>The drill — do it now (≈7 min)</h2>
+  <h2>The drill — hands-free pace trainer (≈7 min)</h2>
   <div class="timer">
-    <div class="clock" id="clock">60</div>
-    <div class="count">seconds left</div>
-    <div class="tally" id="tally">0</div>
-    <p class="hint" id="hint">Each time you arrive at a clean chord, count it.
-    Tap <b>+1</b> or press the <b>spacebar</b>. G→C is one, C→G is two…</p>
-    <button class="big primary" id="plus">+1 &nbsp;change</button>
-    <div class="row" style="margin-top:16px">
-      <button class="ghost" id="start">Start 60 s</button>
-      <button class="ghost" id="reset">Reset</button>
+    <p class="cue">be on this chord when it beeps</p>
+    <div class="target g" id="target">G</div>
+    <div class="rate">
+      <button id="slower" aria-label="slower">−</button>
+      <div class="val"><b id="bpm">30</b><span>changes / min</span></div>
+      <button id="faster" aria-label="faster">+</button>
     </div>
+    <button class="big primary" id="metro">Start metronome</button>
+    <p class="hint" id="hint">No tapping. Just <b>land the chord cleanly on every
+    beep</b>. Both hands stay on the guitar. The screen tells you which chord is
+    coming.</p>
     <div class="bar"><i id="fill"></i></div>
-    <div class="scale"><span>0</span><span>30 · keep going</span><span>60 = 🎯 one/sec</span></div>
-    <div class="best" id="best">Personal best: —</div>
+    <div class="scale"><span>15 easy</span><span>30 · you are here</span><span>60 = 🎯 fluent</span></div>
+    <div class="best" id="best">Best pace held clean: —</div>
   </div>
   <p style="color:var(--soft);font-size:14px;margin:14px 2px 0">
-    Most people start somewhere between <b>5 and 20</b>. That's completely normal.
-    The number isn't the point — <em>watching it climb over days</em> is. Run it
-    2–3 times, rest your hand between rounds.
+    Start at <b>30</b> — your current pace. When you can hit ~10 clean changes in
+    a row at a setting, nudge it up <b>+2</b> and tap <b>“held it”</b> to save the
+    new best. Drop back the moment notes buzz. <em>Clean always wins over fast.</em>
+    Rest your hand between rounds.
   </p>
+  <div class="row" style="justify-content:flex-start;margin-top:10px">
+    <button class="ghost" id="held">✓ I held this pace clean</button>
+  </div>
 
   <h2>Make it music (≈4 min)</h2>
   <div class="card">
@@ -171,31 +185,52 @@ drawChord(document.getElementById('diagG'), [3,2,0,0,0,3], [2,1,0,0,0,3]);
 // C major: x 3 2 0 1 0 · fingers _ 3 2 _ 1 _
 drawChord(document.getElementById('diagC'), [-1,3,2,0,1,0], [0,3,2,0,1,0]);
 
-// ---- timer + tally ----
-const clock=document.getElementById('clock'), tallyEl=document.getElementById('tally'),
-      fill=document.getElementById('fill'), bestEl=document.getElementById('best');
-let left=60,count=0,iv=null,running=false;
-const KEY='omc_g_c_best';
-function showBest(){const b=localStorage.getItem(KEY);bestEl.innerHTML=b?`Personal best: <b>${b}</b> changes`:'Personal best: —';}
-function render(){clock.textContent=left;tallyEl.textContent=count;fill.style.width=Math.min(100,count/60*100)+'%';}
-function stop(done){
-  clearInterval(iv);iv=null;running=false;clock.classList.remove('run');
-  if(done){
-    const b=+(localStorage.getItem(KEY)||0);
-    if(count>b){localStorage.setItem(KEY,count);showBest();
-      document.getElementById('hint').innerHTML='🎉 <b>New personal best!</b> Rest your hand, then go again.';}
-    else document.getElementById('hint').innerHTML='Time! Note your score, shake out the hand, run it again.';
-  }
+// ---- hands-free metronome pace trainer ----
+const targetEl=document.getElementById('target'), bpmEl=document.getElementById('bpm'),
+      fill=document.getElementById('fill'), bestEl=document.getElementById('best'),
+      hintEl=document.getElementById('hint'), metroBtn=document.getElementById('metro');
+const KEY='omc_g_c_bestpace';
+let bpm=30, iv=null, running=false, onG=true, ac=null;
+
+function showBest(){const b=localStorage.getItem(KEY);
+  bestEl.innerHTML=b?`Best pace held clean: <b>${b}</b> /min`:'Best pace held clean: —';}
+function showRate(){bpmEl.textContent=bpm; fill.style.width=Math.min(100,(bpm-15)/(60-15)*100)+'%';}
+
+function click(){ // short wood-block-ish beep via Web Audio
+  if(!ac) ac=new (window.AudioContext||window.webkitAudioContext)();
+  const o=ac.createOscillator(), g=ac.createGain(), t=ac.currentTime;
+  o.frequency.value = onG ? 660 : 880;           // pitch hints which chord
+  g.gain.setValueAtTime(0.001,t);
+  g.gain.exponentialRampToValueAtTime(0.4,t+0.005);
+  g.gain.exponentialRampToValueAtTime(0.001,t+0.08);
+  o.connect(g).connect(ac.destination); o.start(t); o.stop(t+0.09);
 }
-document.getElementById('start').onclick=()=>{
-  if(running)return;left=60;count=0;running=true;render();clock.classList.add('run');
-  iv=setInterval(()=>{left--;render();if(left<=0)stop(true);},1000);
+function tick(){
+  click();
+  targetEl.textContent = onG ? 'G' : 'C';
+  targetEl.className = 'target beat ' + (onG?'g':'c');
+  setTimeout(()=>targetEl.classList.remove('beat'),120);
+  onG=!onG;
+}
+function start(){
+  running=true; metroBtn.textContent='Stop'; onG=true;
+  hintEl.innerHTML='Land the chord cleanly on every beep — low beep = <b>G</b>, high beep = <b>C</b>. Both hands stay on the guitar.';
+  tick(); iv=setInterval(tick, 60000/bpm);
+}
+function stop(){running=false; clearInterval(iv); iv=null; metroBtn.textContent='Start metronome';}
+metroBtn.onclick=()=>running?stop():start();
+
+function setBpm(v){bpm=Math.max(15,Math.min(80,v)); showRate();
+  if(running){clearInterval(iv); iv=setInterval(tick,60000/bpm);} }
+document.getElementById('faster').onclick=()=>setBpm(bpm+2);
+document.getElementById('slower').onclick=()=>setBpm(bpm-2);
+document.getElementById('held').onclick=()=>{
+  const b=+(localStorage.getItem(KEY)||0);
+  if(bpm>b){localStorage.setItem(KEY,bpm); showBest();
+    hintEl.innerHTML=`🎉 New best — <b>${bpm}/min</b> held clean! When it's easy, nudge +2.`;}
+  else hintEl.innerHTML=`Saved. Best stays <b>${b}/min</b>. Push past it when ${bpm} feels effortless.`;
 };
-document.getElementById('reset').onclick=()=>{stop(false);left=60;count=0;render();
-  document.getElementById('hint').innerHTML='Each time you arrive at a clean chord, count it. Tap <b>+1</b> or press <b>spacebar</b>.';};
-document.getElementById('plus').onclick=()=>{count++;render();};
-document.addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();count++;render();}});
-render();showBest();
+showRate(); showBest();
 </script>
 </body>
 </html>
