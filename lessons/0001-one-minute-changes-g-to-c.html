@@ -74,6 +74,7 @@
     <div class="pairsel">
       <label for="pair">Chord pair</label>
       <select id="pair"></select>
+      <button id="rand" class="ghost" style="padding:9px 16px">🎲 Random</button>
     </div>
     <div class="chords">
       <div class="chord"><div class="name" id="nameA">G</div><div id="diagA"></div></div>
@@ -177,7 +178,7 @@ const PAIRS = [['G','C'],['G','D'],['C','D'],['G','Em'],['C','Em'],['D','Em'],
 
 function drawChord(el, name){
   const {frets,fingers}=CHORDS[name];
-  const W=132,H=160,L=22,T=34,cols=5,rows=4;
+  const W=152,H=164,L=24,T=34,cols=6,rows=4;
   const dx=(W-2*L)/(cols-1), dy=(H-T-14)/rows;
   const x=i=>L+i*dx, y=f=>T+(f-0.5)*dy;
   let s=`<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`;
@@ -217,6 +218,10 @@ function loadPair(){
   showBest();
 }
 sel.onchange=()=>{if(running)stop(); loadPair();};
+document.getElementById('rand').onclick=()=>{
+  let i; do{ i=Math.floor(Math.random()*PAIRS.length); }while(PAIRS.length>1 && i===+sel.value);
+  sel.value=i; if(running)stop(); loadPair();
+};
 
 let ac=null;
 function click(){
