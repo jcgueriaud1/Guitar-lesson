@@ -14,6 +14,12 @@ Preferences and working notes for how to teach this user.
   current bottleneck and the focus of early lessons.
 - Acoustic guitar. Wants to play fingerstyle (no pick is the goal).
 
+## Stated preferences
+- **G chord fingering:** uses **pinky (4) on the high‑e/3rd fret**, not the ring
+  finger — i.e. middle(2) on low E‑3, index(1) on A‑2, pinky(4) on high e‑3.
+  Frees the ring finger and pre-positions for Cadd9/D. Diagrams reflect this.
+  When teaching G-family chords (Cadd9, G/B, etc.), assume this hand shape.
+
 ## Skill arc (rough, revise freely)
 1. Clean, fast open-chord changes (One Minute Changes). [Lesson 1]
 2. Changes in time with a steady strum (chord + rhythm together). [Lesson 2] ← current
