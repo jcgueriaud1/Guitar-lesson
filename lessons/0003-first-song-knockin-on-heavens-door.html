@@ -39,6 +39,13 @@
   .dot{width:16px;height:16px;border-radius:50%;background:#e4dccc;transition:transform .08s,background .08s}
   .dot.on{background:var(--accent);transform:scale(1.3)}
   .dot.on.d1{background:var(--accent2)}
+  .strumgrid{display:flex;gap:6px;justify-content:center;margin:8px 0 16px;flex-wrap:wrap}
+  .slot{width:42px;display:flex;flex-direction:column;align-items:center;gap:3px}
+  .slot .arrow{font-size:28px;line-height:1;color:#cabfa9;transition:color .08s,transform .08s}
+  .slot.play .arrow{color:var(--ink)}
+  .slot.on .arrow{color:var(--accent2);transform:scale(1.25)}
+  .slot .lbl{font-size:12px;color:var(--soft);font-variant-numeric:tabular-nums}
+  .slot.beat .lbl{color:var(--ink);font-weight:700}
   .rate{display:flex;align-items:center;justify-content:center;gap:18px;margin:6px 0 18px}
   .rate button{background:#efe7d8;color:var(--ink);width:46px;height:46px;border-radius:50%;font-size:24px;border:none;cursor:pointer;padding:0}
   .rate .val b{font-size:32px;font-weight:780;color:var(--accent);font-variant-numeric:tabular-nums}
@@ -93,7 +100,9 @@
     </div>
     <p class="beats">Each box = one bar (4 beats). G and D share a bar — <b>2 beats
     each</b>. Am and C get a <b>full bar</b> each. Then it repeats, over and over —
-    verses and chorus all use this same loop.</p>
+    verses and chorus all use this same loop. On the shared G–D bar, <b>keep the
+    same strum running</b> and just switch your fretting hand from G to D halfway
+    through — the strumming hand never pauses.</p>
     <cite>Chords &amp; structure verified:
     <a href="https://www.fender.com/articles/chords/learn-to-play-knockin-on-heavens-door">Fender</a> ·
     <a href="https://www.justinguitar.com/songs/bob-dylan-knockin-on-heaven-s-door-chords-tabs-guitar-lesson-sg-170">JustinGuitar song lesson</a>
@@ -109,7 +118,7 @@
     <p class="nowlbl">play this chord</p>
     <p class="now cG" id="now">G</p>
     <div class="next" id="next">&nbsp;</div>
-    <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+    <div class="strumgrid" id="grid"></div>
     <div class="rate">
       <button id="slower" aria-label="slower">−</button>
       <div class="val"><b id="bpm">50</b><span>beats / min</span></div>
@@ -179,47 +188,60 @@ function drawChord(el,name){
 }
 drawChord(dG,'G');drawChord(dD,'D');drawChord(dAm,'Am');drawChord(dC,'C');
 
-// ---- play-along engine: 16 beats per loop ----
-const BEAT = ['G','G','D','D','Am','Am','Am','Am','G','G','D','D','C','C','C','C'];
+// ---- play-along engine: 4 bars × 8 eighth-notes (32 slots / loop) ----
+const BEAT = ['G','G','D','D','Am','Am','Am','Am','G','G','D','D','C','C','C','C']; // chord per quarter-beat
 const CLASS = {G:'cG',D:'cD',Am:'cAm',C:'cC'};
-let bpm=50, i=0, loops=0, iv=null, running=false, ac=null;
+const DIR=['↓','↑','↓','↑','↓','↑','↓','↑'], COUNT=['1','&','2','&','3','&','4','&'];
+const PATTERNS={ down:[1,0,1,0,1,0,1,0], old:[1,0,1,1,0,1,1,1] };   // 1=strike, 0=miss (hand still swings)
+let pattern='down', bpm=50, g=0, loops=0, iv=null, running=false, ac=null;
 
 const nowEl=document.getElementById('now'), nextEl=document.getElementById('next'),
-      dots=document.querySelectorAll('.dot'), bpmEl=document.getElementById('bpm'),
+      gridEl=document.getElementById('grid'), bpmEl=document.getElementById('bpm'),
       playBtn=document.getElementById('play'), loopsEl=document.getElementById('loops');
 
+function buildGrid(){
+  gridEl.innerHTML='';
+  const p=PATTERNS[pattern];
+  for(let i=0;i<8;i++){
+    const s=document.createElement('div');
+    s.className='slot'+(p[i]?' play':'')+(i%2===0?' beat':'');
+    s.innerHTML=`<div class="arrow">${DIR[i]}</div><div class="lbl">${COUNT[i]}</div>`;
+    gridEl.appendChild(s);
+  }
+}
 function click(accent){
   if(!ac) ac=new (window.AudioContext||window.webkitAudioContext)();
-  const o=ac.createOscillator(), g=ac.createGain(), t=ac.currentTime;
+  const o=ac.createOscillator(), gn=ac.createGain(), t=ac.currentTime;
   o.frequency.value=accent?1100:760;
-  g.gain.setValueAtTime(0.001,t); g.gain.exponentialRampToValueAtTime(accent?0.5:0.3,t+0.004);
-  g.gain.exponentialRampToValueAtTime(0.001,t+0.07);
-  o.connect(g).connect(ac.destination); o.start(t); o.stop(t+0.08);
+  gn.gain.setValueAtTime(0.001,t); gn.gain.exponentialRampToValueAtTime(accent?0.5:0.3,t+0.004);
+  gn.gain.exponentialRampToValueAtTime(0.001,t+0.07);
+  o.connect(gn).connect(ac.destination); o.start(t); o.stop(t+0.08);
 }
 function tick(){
-  const beatInBar=i%4, cur=BEAT[i], nxt=BEAT[(i+1)%16];
-  click(beatInBar===0);
+  const sib=g%8, bar=Math.floor(g/8), qb=bar*4+Math.floor(sib/2), cur=BEAT[qb];
+  if(sib%2===0) click(sib===0);                       // metronome on quarter beats, accent the bar's "1"
   nowEl.textContent=cur; nowEl.className='now beat '+CLASS[cur];
-  setTimeout(()=>nowEl.classList.remove('beat'),110);
-  dots.forEach((d,k)=>{d.className='dot'+(k===beatInBar?' on'+(beatInBar===0?' d1':''):'');});
-  nextEl.innerHTML = nxt!==cur ? `get ready → <b>${nxt}</b>` : '&nbsp;';
-  i++; if(i>=16){i=0; loops++; loopsEl.textContent=`Loops played: ${loops} — keep going, don't stop the strum.`;}
+  setTimeout(()=>nowEl.classList.remove('beat'),90);
+  [...gridEl.children].forEach((s,k)=>s.classList.toggle('on',k===sib));
+  const ng=(g+1)%32, nqb=Math.floor(ng/8)*4+Math.floor((ng%8)/2), nc=BEAT[nqb];
+  nextEl.innerHTML = nc!==cur ? `get ready → <b>${nc}</b>` : '&nbsp;';
+  g++; if(g>=32){g=0; loops++; loopsEl.textContent=`Loops played: ${loops} — keep the hand moving, don't stop.`;}
 }
-function start(){running=true; playBtn.textContent='Stop'; i=0; loops=0;
-  loopsEl.textContent='Strum each chord; change when “get ready →” lights up. Keep the hand moving.';
-  tick(); iv=setInterval(tick,60000/bpm);}
+function start(){running=true; playBtn.textContent='Stop'; g=0; loops=0;
+  loopsEl.textContent='Strum the arrows (bold = strike, faint = miss but keep swinging); change chord on “get ready →”.';
+  tick(); iv=setInterval(tick,(60000/bpm)/2);}
 function stop(){running=false; clearInterval(iv); iv=null; playBtn.textContent='Start';
-  dots.forEach(d=>d.className='dot'); nextEl.innerHTML='&nbsp;';}
+  [...gridEl.children].forEach(s=>s.classList.remove('on')); nextEl.innerHTML='&nbsp;';}
 playBtn.onclick=()=>running?stop():start();
 
 function setBpm(v){bpm=Math.max(35,Math.min(110,v)); bpmEl.textContent=bpm;
-  if(running){clearInterval(iv); iv=setInterval(tick,60000/bpm);}}
+  if(running){clearInterval(iv); iv=setInterval(tick,(60000/bpm)/2);}}
 document.getElementById('faster').onclick=()=>setBpm(bpm+5);
 document.getElementById('slower').onclick=()=>setBpm(bpm-5);
 document.querySelectorAll('#strumSeg button').forEach(b=>{b.onclick=()=>{
   document.querySelectorAll('#strumSeg button').forEach(x=>x.classList.remove('active'));
-  b.classList.add('active');};});
-bpmEl.textContent=bpm;
+  b.classList.add('active'); pattern=b.dataset.s; buildGrid();};});
+buildGrid(); bpmEl.textContent=bpm;
 </script>
 </body>
 </html>
