@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 3 · Your First Song — Knockin' on Heaven's Door</title>
+<style>
+  :root{--ink:#2b2620;--soft:#6b6256;--line:#e4dccc;--paper:#fbf7ef;--accent:#a6612f;--accent2:#3b7a5a;--card:#fffdf8;--gold:#caa64a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font:17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;padding:48px 20px}
+  .wrap{max-width:760px;margin:0 auto}
+  .kicker{letter-spacing:.18em;text-transform:uppercase;font-size:12px;color:var(--accent);font-weight:700;margin:0 0 6px}
+  h1{font-size:31px;line-height:1.12;margin:0 0 8px;font-weight:780}
+  .sub{color:var(--soft);margin:0 0 8px;font-size:18px}
+  .why{background:#fcf3e8;border-radius:12px;padding:14px 18px;color:#6a4a2c;font-size:15px;margin:18px 0 34px;border:1px solid #f0e2cf}
+  h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:38px 0 14px;font-weight:740}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin:0 0 16px}
+  .chords{display:flex;gap:18px;flex-wrap:wrap;justify-content:center}
+  .chord{text-align:center}.chord .name{font-weight:780;font-size:19px;margin-bottom:6px}
+  cite{display:block;font-style:normal;color:var(--soft);font-size:13px;margin-top:8px}
+  a{color:var(--accent)}
+  /* chart */
+  .chart{display:flex;flex-direction:column;gap:10px}
+  .line{display:flex;gap:10px}
+  .bar2{flex:1;display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--paper)}
+  .half{flex:1;text-align:center;padding:14px 0;font-weight:780;font-size:20px}
+  .half+.half{border-left:1px dashed var(--line)}
+  .barfull{flex:1;text-align:center;padding:14px 0;font-weight:780;font-size:20px;border:1px solid var(--line);border-radius:10px;background:var(--paper)}
+  .cG{color:var(--accent)} .cD{color:var(--accent2)} .cAm{color:#8a5a86} .cC{color:#b08400}
+  .beats{font-size:12px;color:var(--soft);text-align:center;margin-top:4px}
+  /* player */
+  .player{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;text-align:center}
+  .nowlbl{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin:0 0 2px}
+  .now{font-size:88px;font-weight:800;line-height:1;margin:0;transition:transform .08s,color .1s}
+  .now.beat{transform:scale(1.07)}
+  .next{height:22px;font-weight:740;color:var(--gold);font-size:15px;margin:4px 0 10px}
+  .dots{display:flex;gap:10px;justify-content:center;margin:6px 0 16px}
+  .dot{width:16px;height:16px;border-radius:50%;background:#e4dccc;transition:transform .08s,background .08s}
+  .dot.on{background:var(--accent);transform:scale(1.3)}
+  .dot.on.d1{background:var(--accent2)}
+  .rate{display:flex;align-items:center;justify-content:center;gap:18px;margin:6px 0 18px}
+  .rate button{background:#efe7d8;color:var(--ink);width:46px;height:46px;border-radius:50%;font-size:24px;border:none;cursor:pointer;padding:0}
+  .rate .val b{font-size:32px;font-weight:780;color:var(--accent);font-variant-numeric:tabular-nums}
+  .rate .val span{display:block;font-size:12px;color:var(--soft);letter-spacing:.08em;text-transform:uppercase}
+  .big{background:var(--accent2);color:#fff;font-size:20px;padding:16px 40px;border:none;border-radius:18px;cursor:pointer;font-weight:680;width:100%;max-width:340px}
+  .loops{margin-top:14px;color:var(--soft);font-size:14px}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin-bottom:14px}
+  .seg button{background:var(--card);border:none;padding:9px 16px;font:inherit;font-size:14px;cursor:pointer;color:var(--soft)}
+  .seg button.active{background:var(--accent);color:#fff;font-weight:680}
+  .ask{border-left:3px solid var(--accent2);background:#eef6f0;border-radius:0 10px 10px 0;padding:14px 18px;margin:30px 0 0;font-size:15px;color:#2f5742}
+  .rule{border-left:3px solid var(--gold);background:#fcf7e9;border-radius:0 10px 10px 0;padding:14px 18px;margin:24px 0 0;font-size:15px;color:#6a5320}
+  footer{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;color:var(--soft);font-size:13px}
+  @media print{.player .rate,.player .big,.seg{display:none}body{background:#fff;padding:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">Lesson 3 · Your first song</p>
+  <h1>Knockin' on Heaven's Door</h1>
+  <p class="sub">Bob Dylan · four chords you already know, start to finish.</p>
+  <div class="why">
+    <b>Why this song, now.</b> It's the moment your drills become music. Just four
+    chords — <b>G, D, Am, C</b> — at a slow, forgiving tempo, looping the same
+    pattern the whole way through. It puts your <b>G⇄D</b> and <b>C⇄G</b> changes
+    (Lesson 1) and your steady strum (Lesson 2) to work in a real, recognisable
+    song. Get this start to finish and you've proven the foundation holds.
+  </div>
+
+  <h2>The four chords</h2>
+  <div class="card">
+    <div class="chords">
+      <div class="chord"><div class="name cG">G</div><div id="dG"></div></div>
+      <div class="chord"><div class="name cD">D</div><div id="dD"></div></div>
+      <div class="chord"><div class="name cAm">Am</div><div id="dAm"></div></div>
+      <div class="chord"><div class="name cC">C</div><div id="dC"></div></div>
+    </div>
+    <p style="text-align:center;color:var(--soft);font-size:14px;margin:12px 0 0">
+      G shown with your pinky on the high e. ● finger · ○ open · ✕ don't play.</p>
+  </div>
+
+  <h2>The whole song (one repeating pattern)</h2>
+  <div class="card">
+    <div class="chart">
+      <div class="line">
+        <div class="bar2"><div class="half cG">G</div><div class="half cD">D</div></div>
+        <div class="barfull cAm">Am</div>
+      </div>
+      <div class="line">
+        <div class="bar2"><div class="half cG">G</div><div class="half cD">D</div></div>
+        <div class="barfull cC">C</div>
+      </div>
+    </div>
+    <p class="beats">Each box = one bar (4 beats). G and D share a bar — <b>2 beats
+    each</b>. Am and C get a <b>full bar</b> each. Then it repeats, over and over —
+    verses and chorus all use this same loop.</p>
+    <cite>Chords &amp; structure verified:
+    <a href="https://www.fender.com/articles/chords/learn-to-play-knockin-on-heavens-door">Fender</a> ·
+    <a href="https://www.justinguitar.com/songs/bob-dylan-knockin-on-heaven-s-door-chords-tabs-guitar-lesson-sg-170">JustinGuitar song lesson</a>
+    (full lyrics &amp; word placement there).</cite>
+  </div>
+
+  <h2>Play along — hands-free (≈8 min)</h2>
+  <div class="player">
+    <div class="seg" id="strumSeg">
+      <button data-s="down" class="active">Strum: down on each beat</button>
+      <button data-s="old">Old Faithful</button>
+    </div>
+    <p class="nowlbl">play this chord</p>
+    <p class="now cG" id="now">G</p>
+    <div class="next" id="next">&nbsp;</div>
+    <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+    <div class="rate">
+      <button id="slower" aria-label="slower">−</button>
+      <div class="val"><b id="bpm">50</b><span>beats / min</span></div>
+      <button id="faster" aria-label="faster">+</button>
+    </div>
+    <button class="big" id="play">Start</button>
+    <p class="loops" id="loops">Hit Start. The chord changes for you — your only
+    job is to strum it and be ready when “get ready →” lights up.</p>
+  </div>
+
+  <div class="rule">
+    <b>Start slower than feels necessary.</b> 50 bpm, down-strums only, and just
+    loop the four bars until the changes happen without you thinking. Speed and
+    Old Faithful come <em>after</em> that — there's no prize for rushing.
+  </div>
+
+  <h2>How to practise it</h2>
+  <div class="card">
+    <ol style="margin:0;padding-left:20px">
+      <li>Loop the player at <b>50 bpm</b>, one down-strum per beat. The 2-beat
+      G and D just get two downs each; Am and C get four.</li>
+      <li>When that's smooth, nudge the tempo up a little, or switch to
+      <b>Old Faithful</b> on the full-bar chords.</li>
+      <li>Finally, put on the actual recording and play along — that's the real
+      win, and where the rhythm locks in.</li>
+    </ol>
+  </div>
+
+  <div class="ask">
+    <b>Ask your teacher.</b> Is the G→D in two beats rushing you? Which strum to
+    use on the half-bars? Want the optional Dylan embellishments (Am→Am7, C→Cadd9 —
+    both just add your pinky)? Tell me. When you can loop the whole thing without
+    stopping, send word — that's a real milestone, and Lesson 4 opens up your
+    first fingerpicking.
+  </div>
+
+  <footer>
+    Lesson 3 of an ongoing plan · strum patterns in
+    <a href="../reference/strumming-patterns.html">reference/strumming-patterns.html</a> ·
+    chord drill in <a href="0001-one-minute-changes-g-to-c.html">Lesson 1</a> ·
+    sources in <a href="../RESOURCES.md">RESOURCES.md</a>.
+  </footer>
+</div>
+
+<script>
+const CHORDS = {
+  G:  {frets:[3,2,0,0,0,3],  fingers:[2,1,0,0,0,4]},
+  D:  {frets:[-1,-1,0,2,3,2],fingers:[0,0,0,1,3,2]},
+  Am: {frets:[-1,0,2,2,1,0], fingers:[0,0,2,3,1,0]},
+  C:  {frets:[-1,3,2,0,1,0], fingers:[0,3,2,0,1,0]}
+};
+function drawChord(el,name){
+  const {frets,fingers}=CHORDS[name];
+  const W=140,H=160,L=22,T=32,cols=6,rows=4;
+  const dx=(W-2*L)/(cols-1), dy=(H-T-14)/rows, x=i=>L+i*dx, y=f=>T+(f-0.5)*dy;
+  let s=`<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`;
+  s+=`<rect x="${L-2}" y="${T-6}" width="${W-2*L+4}" height="6" rx="2" fill="#2b2620"/>`;
+  for(let f=0;f<=rows;f++) s+=`<line x1="${L}" y1="${T+f*dy}" x2="${W-L}" y2="${T+f*dy}" stroke="#c9bfa9" stroke-width="1.3"/>`;
+  for(let c=0;c<cols;c++) s+=`<line x1="${x(c)}" y1="${T}" x2="${x(c)}" y2="${T+rows*dy}" stroke="#c9bfa9" stroke-width="1.3"/>`;
+  for(let st=0;st<6;st++){const fr=frets[st];
+    if(fr===-1) s+=`<text x="${x(st)}" y="${T-12}" text-anchor="middle" font-size="12" fill="#9a8f7c">✕</text>`;
+    else if(fr===0) s+=`<circle cx="${x(st)}" cy="${T-13}" r="5" fill="none" stroke="#6b6256" stroke-width="1.5"/>`;
+    else{s+=`<circle cx="${x(st)}" cy="${y(fr)}" r="8.5" fill="#a6612f"/>`;
+      if(fingers[st]) s+=`<text x="${x(st)}" y="${y(fr)+4}" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">${fingers[st]}</text>`;}}
+  el.innerHTML=s+'</svg>';
+}
+drawChord(dG,'G');drawChord(dD,'D');drawChord(dAm,'Am');drawChord(dC,'C');
+
+// ---- play-along engine: 16 beats per loop ----
+const BEAT = ['G','G','D','D','Am','Am','Am','Am','G','G','D','D','C','C','C','C'];
+const CLASS = {G:'cG',D:'cD',Am:'cAm',C:'cC'};
+let bpm=50, i=0, loops=0, iv=null, running=false, ac=null;
+
+const nowEl=document.getElementById('now'), nextEl=document.getElementById('next'),
+      dots=document.querySelectorAll('.dot'), bpmEl=document.getElementById('bpm'),
+      playBtn=document.getElementById('play'), loopsEl=document.getElementById('loops');
+
+function click(accent){
+  if(!ac) ac=new (window.AudioContext||window.webkitAudioContext)();
+  const o=ac.createOscillator(), g=ac.createGain(), t=ac.currentTime;
+  o.frequency.value=accent?1100:760;
+  g.gain.setValueAtTime(0.001,t); g.gain.exponentialRampToValueAtTime(accent?0.5:0.3,t+0.004);
+  g.gain.exponentialRampToValueAtTime(0.001,t+0.07);
+  o.connect(g).connect(ac.destination); o.start(t); o.stop(t+0.08);
+}
+function tick(){
+  const beatInBar=i%4, cur=BEAT[i], nxt=BEAT[(i+1)%16];
+  click(beatInBar===0);
+  nowEl.textContent=cur; nowEl.className='now beat '+CLASS[cur];
+  setTimeout(()=>nowEl.classList.remove('beat'),110);
+  dots.forEach((d,k)=>{d.className='dot'+(k===beatInBar?' on'+(beatInBar===0?' d1':''):'');});
+  nextEl.innerHTML = nxt!==cur ? `get ready → <b>${nxt}</b>` : '&nbsp;';
+  i++; if(i>=16){i=0; loops++; loopsEl.textContent=`Loops played: ${loops} — keep going, don't stop the strum.`;}
+}
+function start(){running=true; playBtn.textContent='Stop'; i=0; loops=0;
+  loopsEl.textContent='Strum each chord; change when “get ready →” lights up. Keep the hand moving.';
+  tick(); iv=setInterval(tick,60000/bpm);}
+function stop(){running=false; clearInterval(iv); iv=null; playBtn.textContent='Start';
+  dots.forEach(d=>d.className='dot'); nextEl.innerHTML='&nbsp;';}
+playBtn.onclick=()=>running?stop():start();
+
+function setBpm(v){bpm=Math.max(35,Math.min(110,v)); bpmEl.textContent=bpm;
+  if(running){clearInterval(iv); iv=setInterval(tick,60000/bpm);}}
+document.getElementById('faster').onclick=()=>setBpm(bpm+5);
+document.getElementById('slower').onclick=()=>setBpm(bpm-5);
+document.querySelectorAll('#strumSeg button').forEach(b=>{b.onclick=()=>{
+  document.querySelectorAll('#strumSeg button').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');};});
+bpmEl.textContent=bpm;
+</script>
+</body>
+</html>

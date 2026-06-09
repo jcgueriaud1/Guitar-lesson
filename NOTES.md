@@ -22,10 +22,11 @@ Preferences and working notes for how to teach this user.
 
 ## Skill arc (rough, revise freely)
 1. Clean, fast open-chord changes (One Minute Changes). [Lesson 1]
-2. Changes in time with a steady strum (chord + rhythm together). [Lesson 2] ← current
-3. Basic Travis picking on a single chord, then across a chord change.
-4. A full fingerpicked song.
-5. Switching strum ↔ fingerpick within one song.
+2. Changes in time with a steady strum (chord + rhythm together). [Lesson 2]
+3. First full song — Knockin' on Heaven's Door, G/D/Am/C. [Lesson 3] ← current
+4. Basic Travis picking on a single chord, then across a chord change.
+5. A full fingerpicked song.
+6. Switching strum ↔ fingerpick within one song.
 Each rung is reinforced by learning real songs, easy → advanced.
 
 ## Format notes
