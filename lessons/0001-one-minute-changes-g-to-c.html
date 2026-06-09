@@ -3,18 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lesson 1 · One Minute Changes: G ⇄ C</title>
+<title>Lesson 1 · One Minute Changes</title>
 <style>
   :root{
     --ink:#2b2620; --soft:#6b6256; --line:#e4dccc; --paper:#fbf7ef;
     --accent:#a6612f; --accent2:#3b7a5a; --card:#fffdf8; --gold:#caa64a;
   }
   *{box-sizing:border-box}
-  body{
-    margin:0;background:var(--paper);color:var(--ink);
-    font:17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    padding:48px 20px;
-  }
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font:17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;padding:48px 20px}
   .wrap{max-width:760px;margin:0 auto}
   .kicker{letter-spacing:.18em;text-transform:uppercase;font-size:12px;color:var(--accent);font-weight:700;margin:0 0 6px}
   h1{font-size:32px;line-height:1.12;margin:0 0 8px;font-weight:780}
@@ -23,66 +20,64 @@
   h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:40px 0 14px;font-weight:740}
   .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin:0 0 16px}
   ol{margin:0;padding-left:22px} ol li{margin:0 0 10px}
+  ul{margin:8px 0 0;padding-left:20px} ul li{margin:0 0 7px}
   .key{color:var(--accent2);font-weight:700}
-  /* chord diagrams */
-  .chords{display:flex;gap:28px;flex-wrap:wrap;justify-content:center;margin:6px 0 4px}
+  .chords{display:flex;gap:28px;flex-wrap:wrap;justify-content:center;margin:10px 0 4px}
   .chord{text-align:center}
   .chord .name{font-weight:780;font-size:20px;margin-bottom:8px;color:var(--ink)}
   svg{display:block}
+  .pairsel{display:flex;align-items:center;gap:10px;justify-content:center;flex-wrap:wrap}
+  .pairsel label{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);font-weight:700}
+  select{font:inherit;font-size:16px;font-weight:680;color:var(--ink);background:var(--paper);
+    border:1px solid var(--line);border-radius:10px;padding:9px 14px;cursor:pointer}
   /* timer */
   .timer{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;text-align:center}
-  .clock{font-variant-numeric:tabular-nums;font-size:64px;font-weight:780;letter-spacing:1px;line-height:1;margin:4px 0 2px}
-  .clock.run{color:var(--accent2)}
-  .count{font-size:15px;color:var(--soft);margin-bottom:18px}
-  .tally{font-variant-numeric:tabular-nums;font-size:88px;font-weight:800;color:var(--accent);line-height:.9;margin:6px 0}
-  .hint{color:var(--soft);font-size:14px;margin:0 0 18px}
-  .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-  button{
-    font:inherit;font-weight:680;cursor:pointer;border:none;border-radius:999px;padding:13px 26px;
-    transition:transform .06s ease, filter .15s ease;
-  }
-  button:active{transform:translateY(1px)}
-  .primary{background:var(--accent);color:#fff}
-  .big{background:var(--accent2);color:#fff;font-size:22px;padding:20px 40px;border-radius:20px;width:100%;max-width:360px}
-  .ghost{background:#efe7d8;color:var(--ink)}
+  .cue{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin:0 0 4px}
+  .target{font-size:96px;font-weight:800;line-height:1;margin:4px 0 6px;transition:color .1s,transform .1s;color:var(--accent)}
+  .target.beat{transform:scale(1.08)} .target.alt{color:var(--accent2)}
+  .rate{display:flex;align-items:center;justify-content:center;gap:18px;margin:10px 0 20px}
+  .rate button{background:#efe7d8;color:var(--ink);width:48px;height:48px;border-radius:50%;font-size:24px;border:none;cursor:pointer;padding:0}
+  .rate .val{min-width:120px}
+  .rate .val b{font-size:34px;font-weight:780;color:var(--accent);font-variant-numeric:tabular-nums}
+  .rate .val span{display:block;font-size:12px;color:var(--soft);letter-spacing:.08em;text-transform:uppercase}
+  .big{background:var(--accent2);color:#fff;font-size:22px;padding:20px 40px;border:none;border-radius:20px;cursor:pointer;font-weight:680;width:100%;max-width:360px}
+  .ghost{background:#efe7d8;color:var(--ink);border:none;border-radius:999px;padding:13px 26px;font:inherit;font-weight:680;cursor:pointer}
+  .hint{color:var(--soft);font-size:14px;margin:18px 0 0}
+  .bar{height:8px;border-radius:999px;background:#efe7d8;max-width:420px;margin:18px auto 0;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--gold));transition:width .25s}
+  .scale{display:flex;justify-content:space-between;font-size:13px;color:var(--soft);max-width:420px;margin:6px auto 0}
   .best{margin-top:16px;color:var(--soft);font-size:14px}
   .best b{color:var(--gold)}
-  .cue{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin:0 0 4px}
-  .target{font-size:96px;font-weight:800;line-height:1;margin:4px 0 6px;transition:color .1s,transform .1s}
-  .target.beat{transform:scale(1.08)}
-  .target.g{color:var(--accent)} .target.c{color:var(--accent2)}
-  .rate{display:flex;align-items:center;justify-content:center;gap:18px;margin:10px 0 20px}
-  .rate button{background:#efe7d8;color:var(--ink);width:48px;height:48px;border-radius:50%;font-size:24px;padding:0}
-  .rate .val{font-variant-numeric:tabular-nums;min-width:120px}
-  .rate .val b{font-size:34px;font-weight:780;color:var(--accent)}
-  .rate .val span{display:block;font-size:12px;color:var(--soft);letter-spacing:.08em;text-transform:uppercase}
-  .scale{display:flex;justify-content:space-between;font-size:13px;color:var(--soft);max-width:420px;margin:14px auto 0}
-  .bar{height:8px;border-radius:999px;background:#efe7d8;max-width:420px;margin:6px auto 0;overflow:hidden}
-  .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--gold));transition:width .25s}
   .ask{border-left:3px solid var(--accent2);background:#eef6f0;border-radius:0 10px 10px 0;padding:14px 18px;margin:34px 0 0;font-size:15px;color:#2f5742}
-  footer{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;color:var(--soft);font-size:13px}
-  a{color:var(--accent)}
   cite{display:block;font-style:normal;color:var(--soft);font-size:13px;margin-top:6px}
-  @media print{.timer .row,.bar{display:none}body{background:#fff;padding:0}}
+  a{color:var(--accent)}
+  footer{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;color:var(--soft);font-size:13px}
+  @media print{.timer .rate,.timer .big,.row,.bar,.pairsel{display:none}body{background:#fff;padding:0}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <p class="kicker">Lesson 1 · Foundation</p>
-  <h1>One Minute Changes: G ⇄ C</h1>
-  <p class="sub">Make one chord change clean, fast, and automatic.</p>
+  <h1>One Minute Changes</h1>
+  <p class="sub">Make one chord change clean, fast, and automatic — then rotate to the next.</p>
   <div class="why">
-    <b>Why this, why first.</b> You already know the shapes — your bottleneck is
-    the <em>change</em>. G⇄C is the change to own first: it's everywhere in
-    beginner songs, and it forces a big hand reposition, so cracking it makes the
-    others feel easy. This is the foundation the whole mission stands on.
+    <b>How to use this drill.</b> Pick <em>one</em> chord pair and drill only that
+    pair — isolating a single change is what builds the muscle memory; mixing
+    chords randomly is slower and more frustrating. Stay on a pair until it's
+    solid, then rotate to the next. Start with <b>G ⇄ C</b>: it's everywhere in
+    songs and forces a big hand reposition, so cracking it makes the rest easier.
+    <cite>Method: JustinGuitar — <a href="https://www.justinguitar.com/guitar-lessons/one-minute-changes-exercise-b1-110">One Minute Changes</a>.</cite>
   </div>
 
-  <h2>The two shapes</h2>
+  <h2>Pick your pair</h2>
   <div class="card">
+    <div class="pairsel">
+      <label for="pair">Chord pair</label>
+      <select id="pair"></select>
+    </div>
     <div class="chords">
-      <div class="chord"><div class="name">G major</div><div id="diagG"></div></div>
-      <div class="chord"><div class="name">C major</div><div id="diagC"></div></div>
+      <div class="chord"><div class="name" id="nameA">G</div><div id="diagA"></div></div>
+      <div class="chord"><div class="name" id="nameB">C</div><div id="diagB"></div></div>
     </div>
     <p style="text-align:center;color:var(--soft);font-size:14px;margin:10px 0 0">
       ● = finger, number = which finger · ○ = open string · ✕ = don't play
@@ -92,131 +87,156 @@
   <h2>The one idea: minimal movement</h2>
   <div class="card">
     <ol>
-      <li><span class="key">Find the pivot.</span> Going G→C, your
-      <b>finger 1</b> only slides a little and your hand shape barely opens.
-      Don't lift the whole hand off the neck — move as little as possible.</li>
-      <li><span class="key">Move as a unit.</span> Try to land all fingers
-      <em>together</em>, not one at a time. Aim them at the new shape before they
-      touch down.</li>
+      <li><span class="key">Find the pivot.</span> For most pairs, one finger
+      barely moves or a shape just shifts. Spot what stays and move as little as
+      possible — don't lift the whole hand off the neck.</li>
+      <li><span class="key">Move as a unit.</span> Aim all fingers at the new
+      shape and land them <em>together</em>, not one at a time.</li>
       <li><span class="key">Air changes.</span> Lift just off the strings and
-      switch shapes in the air, over and over, with no pressing. Train the shape
-      first, the pressing second.</li>
-      <li><span class="key">Clean &gt; fast.</span> Press, strum once, check
-      every note rings. Only speed up when it's clean. Never drill a buzz.</li>
+      switch shapes in the air, with no pressing. Train the shape first, the
+      pressing second.</li>
+      <li><span class="key">Clean &gt; fast.</span> Press, strum once, check every
+      note rings. Only speed up when it's clean. Never drill a buzz.</li>
     </ol>
-    <cite>Method: JustinGuitar — <a href="https://www.justinguitar.com/guitar-lessons/one-minute-changes-exercise-b1-110">One Minute Changes Exercise</a>.</cite>
   </div>
 
   <h2>The drill — hands-free pace trainer (≈7 min)</h2>
   <div class="timer">
     <p class="cue">be on this chord when it beeps</p>
-    <div class="target g" id="target">G</div>
+    <div class="target" id="target">G</div>
     <div class="rate">
       <button id="slower" aria-label="slower">−</button>
       <div class="val"><b id="bpm">30</b><span>changes / min</span></div>
       <button id="faster" aria-label="faster">+</button>
     </div>
-    <button class="big primary" id="metro">Start metronome</button>
+    <button class="big" id="metro">Start metronome</button>
     <p class="hint" id="hint">No tapping. Just <b>land the chord cleanly on every
-    beep</b>. Both hands stay on the guitar. The screen tells you which chord is
-    coming.</p>
+    beep</b> — low beep = first chord, high beep = second. Both hands stay on the
+    guitar; the screen tells you which chord is coming.</p>
     <div class="bar"><i id="fill"></i></div>
     <div class="scale"><span>15 easy</span><span>30 · you are here</span><span>60 = 🎯 fluent</span></div>
     <div class="best" id="best">Best pace held clean: —</div>
   </div>
   <p style="color:var(--soft);font-size:14px;margin:14px 2px 0">
-    Start at <b>30</b> — your current pace. When you can hit ~10 clean changes in
-    a row at a setting, nudge it up <b>+2</b> and tap <b>“held it”</b> to save the
-    new best. Drop back the moment notes buzz. <em>Clean always wins over fast.</em>
-    Rest your hand between rounds.
+    Start at the pace you can hold clean. When ~10 changes in a row feel easy,
+    nudge <b>+2</b> and tap <b>“held it”</b> to bank it (saved <em>per pair</em>).
+    Drop back the moment notes buzz. Rest your hand between rounds.
   </p>
-  <div class="row" style="justify-content:flex-start;margin-top:10px">
-    <button class="ghost" id="held">✓ I held this pace clean</button>
+  <div class="row" style="margin-top:10px"><button class="ghost" id="held">✓ I held this pace clean</button></div>
+
+  <h2>Which pair next? (the rotation)</h2>
+  <div class="card">
+    Master one pair before adding the next; each day, warm up the ones you know,
+    then spend most time on your <b>weakest</b> pair. A high-value order:
+    <ul>
+      <li><b>G⇄C → G⇄D → C⇄D.</b> These three are the I–IV–V of G major — the
+      most common progression in Western music, and the key to hundreds of songs.</li>
+      <li>Add <b>Em</b>: G⇄Em, C⇄Em, D⇄Em (Em is the easiest open chord — a quick win).</li>
+      <li>Add <b>Am</b>: C⇄Am, G⇄Am, D⇄Am.</li>
+    </ul>
+    Don't randomise the drill — the “random” practice that matters is playing real
+    progressions, which is exactly what <a href="0002-change-in-time-keep-strumming.html">Lesson 2</a> trains.
+    <cite>Chord/progression picks: <a href="https://www.fender.com/articles/chords/essential-beginner-chords-g-c-d">Fender — Essential Beginner Chords G, C, D</a> ·
+    <a href="https://bmusician.com/blog/guitar-chord-progressions-for-beginners/">common beginner progressions</a>.</cite>
   </div>
 
   <h2>Make it music (≈4 min)</h2>
   <div class="card">
-    Count a slow <b>1–2–3–4</b> out loud. Strum G once on beat 1, let beats 2–3–4
-    ring while you get your fingers to C, strum C on the next beat 1. The goal
-    isn't speed — it's <b>changing in time without stopping the count</b>. If you
-    have to pause, slow the count down until you don't.
+    Count a slow <b>1–2–3–4</b> out loud. Strum the first chord on beat 1, let
+    2–3–4 ring while you move to the second, strum it on the next beat 1. The goal
+    isn't speed — it's <b>changing in time without stopping the count</b>.
   </div>
 
   <div class="ask">
-    <b>I'm your teacher — ask me anything.</b> A note buzzing? Not sure which
-    finger pivots? Hand cramping? Tell me in chat and we'll fix it before it
-    becomes a habit. When you've done this a few days, send me your best score and
-    I'll set Lesson 2.
+    <b>I'm your teacher — ask me anything.</b> A note buzzing on a new chord? Not
+    sure which finger pivots for a given pair? Tell me in chat. When a pair holds
+    clean near 60/min, rotate to the next — and send me your scores so I can
+    calibrate what's coming.
   </div>
 
   <footer>
-    Lesson 1 of an ongoing plan · routine template in
+    Lesson 1 of an ongoing plan · routine in
     <a href="../reference/15-minute-practice-routine.html">reference/15-minute-practice-routine.html</a> ·
-    sources tracked in <a href="../RESOURCES.md">RESOURCES.md</a>.
+    sources in <a href="../RESOURCES.md">RESOURCES.md</a>.
   </footer>
 </div>
 
 <script>
-// ---- chord diagram renderer ----
-// frets: array of 6 (low E -> high E). -1 = mute, 0 = open, n = fret.
-// fingers: array of 6, finger number to print on the dot (0/'' = none).
-function drawChord(el, frets, fingers){
+// ---- chord library: frets low E->high E (-1 mute, 0 open), fingers per string ----
+const CHORDS = {
+  G:  {frets:[3,2,0,0,0,3],  fingers:[2,1,0,0,0,3]},
+  C:  {frets:[-1,3,2,0,1,0], fingers:[0,3,2,0,1,0]},
+  D:  {frets:[-1,-1,0,2,3,2],fingers:[0,0,0,1,3,2]},
+  Em: {frets:[0,2,2,0,0,0],  fingers:[0,2,3,0,0,0]},
+  Am: {frets:[-1,0,2,2,1,0], fingers:[0,0,2,3,1,0]},
+  E:  {frets:[0,2,2,1,0,0],  fingers:[0,2,3,1,0,0]},
+  A:  {frets:[-1,0,2,2,2,0], fingers:[0,0,1,2,3,0]}
+};
+const PAIRS = [['G','C'],['G','D'],['C','D'],['G','Em'],['C','Em'],['D','Em'],
+               ['C','Am'],['G','Am'],['D','Am'],['Em','Am'],['A','D'],['E','A'],['Am','E']];
+
+function drawChord(el, name){
+  const {frets,fingers}=CHORDS[name];
   const W=132,H=160,L=22,T=34,cols=5,rows=4;
   const dx=(W-2*L)/(cols-1), dy=(H-T-14)/rows;
   const x=i=>L+i*dx, y=f=>T+(f-0.5)*dy;
   let s=`<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`;
-  s+=`<rect x="${L-2}" y="${T-6}" width="${W-2*L+4}" height="6" rx="2" fill="#2b2620"/>`; // nut
+  s+=`<rect x="${L-2}" y="${T-6}" width="${W-2*L+4}" height="6" rx="2" fill="#2b2620"/>`;
   for(let f=0;f<=rows;f++) s+=`<line x1="${L}" y1="${T+f*dy}" x2="${W-L}" y2="${T+f*dy}" stroke="#c9bfa9" stroke-width="1.4"/>`;
   for(let c=0;c<cols;c++) s+=`<line x1="${x(c)}" y1="${T}" x2="${x(c)}" y2="${T+rows*dy}" stroke="#c9bfa9" stroke-width="1.4"/>`;
   for(let st=0;st<6;st++){
     const fr=frets[st];
-    if(fr===-1){ s+=`<text x="${x(st)}" y="${T-12}" text-anchor="middle" font-size="13" fill="#9a8f7c">✕</text>`; }
-    else if(fr===0){ s+=`<circle cx="${x(st)}" cy="${T-13}" r="5.5" fill="none" stroke="#6b6256" stroke-width="1.6"/>`; }
+    if(fr===-1) s+=`<text x="${x(st)}" y="${T-12}" text-anchor="middle" font-size="13" fill="#9a8f7c">✕</text>`;
+    else if(fr===0) s+=`<circle cx="${x(st)}" cy="${T-13}" r="5.5" fill="none" stroke="#6b6256" stroke-width="1.6"/>`;
     else{
       s+=`<circle cx="${x(st)}" cy="${y(fr)}" r="9" fill="#a6612f"/>`;
       if(fingers[st]) s+=`<text x="${x(st)}" y="${y(fr)+4}" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">${fingers[st]}</text>`;
     }
   }
-  s+='</svg>';
-  el.innerHTML=s;
+  return el.innerHTML=s+'</svg>';
 }
-// G major (low->high): 3 2 0 0 0 3  · fingers 2 1 _ _ _ 3
-drawChord(document.getElementById('diagG'), [3,2,0,0,0,3], [2,1,0,0,0,3]);
-// C major: x 3 2 0 1 0 · fingers _ 3 2 _ 1 _
-drawChord(document.getElementById('diagC'), [-1,3,2,0,1,0], [0,3,2,0,1,0]);
 
-// ---- hands-free metronome pace trainer ----
+// ---- state ----
+const sel=document.getElementById('pair');
+PAIRS.forEach((p,i)=>{const o=document.createElement('option');o.value=i;o.textContent=`${p[0]} ⇄ ${p[1]}`;sel.appendChild(o);});
+let pair=PAIRS[0], bpm=30, iv=null, running=false, onA=true;
+
 const targetEl=document.getElementById('target'), bpmEl=document.getElementById('bpm'),
       fill=document.getElementById('fill'), bestEl=document.getElementById('best'),
       hintEl=document.getElementById('hint'), metroBtn=document.getElementById('metro');
-const KEY='omc_g_c_bestpace';
-let bpm=30, iv=null, running=false, onG=true, ac=null;
+const keyFor=()=>`omc_best_${pair[0]}_${pair[1]}`;
 
-function showBest(){const b=localStorage.getItem(KEY);
-  bestEl.innerHTML=b?`Best pace held clean: <b>${b}</b> /min`:'Best pace held clean: —';}
+function showBest(){const b=localStorage.getItem(keyFor());
+  bestEl.innerHTML=b?`Best pace held clean (${pair[0]}⇄${pair[1]}): <b>${b}</b>/min`:'Best pace held clean: —';}
 function showRate(){bpmEl.textContent=bpm; fill.style.width=Math.min(100,(bpm-15)/(60-15)*100)+'%';}
+function loadPair(){
+  pair=PAIRS[+sel.value];
+  document.getElementById('nameA').textContent=pair[0]; document.getElementById('nameB').textContent=pair[1];
+  drawChord(document.getElementById('diagA'),pair[0]); drawChord(document.getElementById('diagB'),pair[1]);
+  onA=true; targetEl.textContent=pair[0]; targetEl.classList.remove('alt');
+  showBest();
+}
+sel.onchange=()=>{if(running)stop(); loadPair();};
 
-function click(){ // short wood-block-ish beep via Web Audio
+let ac=null;
+function click(){
   if(!ac) ac=new (window.AudioContext||window.webkitAudioContext)();
   const o=ac.createOscillator(), g=ac.createGain(), t=ac.currentTime;
-  o.frequency.value = onG ? 660 : 880;           // pitch hints which chord
-  g.gain.setValueAtTime(0.001,t);
-  g.gain.exponentialRampToValueAtTime(0.4,t+0.005);
+  o.frequency.value = onA ? 660 : 880;
+  g.gain.setValueAtTime(0.001,t); g.gain.exponentialRampToValueAtTime(0.4,t+0.005);
   g.gain.exponentialRampToValueAtTime(0.001,t+0.08);
   o.connect(g).connect(ac.destination); o.start(t); o.stop(t+0.09);
 }
 function tick(){
   click();
-  targetEl.textContent = onG ? 'G' : 'C';
-  targetEl.className = 'target beat ' + (onG?'g':'c');
+  targetEl.textContent = onA ? pair[0] : pair[1];
+  targetEl.className = 'target beat' + (onA?'':' alt');
   setTimeout(()=>targetEl.classList.remove('beat'),120);
-  onG=!onG;
+  onA=!onA;
 }
-function start(){
-  running=true; metroBtn.textContent='Stop'; onG=true;
-  hintEl.innerHTML='Land the chord cleanly on every beep — low beep = <b>G</b>, high beep = <b>C</b>. Both hands stay on the guitar.';
-  tick(); iv=setInterval(tick, 60000/bpm);
-}
+function start(){running=true; metroBtn.textContent='Stop'; onA=true;
+  hintEl.innerHTML=`Land the chord cleanly on every beep — low beep = <b>${pair[0]}</b>, high beep = <b>${pair[1]}</b>.`;
+  tick(); iv=setInterval(tick,60000/bpm);}
 function stop(){running=false; clearInterval(iv); iv=null; metroBtn.textContent='Start metronome';}
 metroBtn.onclick=()=>running?stop():start();
 
@@ -225,12 +245,13 @@ function setBpm(v){bpm=Math.max(15,Math.min(80,v)); showRate();
 document.getElementById('faster').onclick=()=>setBpm(bpm+2);
 document.getElementById('slower').onclick=()=>setBpm(bpm-2);
 document.getElementById('held').onclick=()=>{
-  const b=+(localStorage.getItem(KEY)||0);
-  if(bpm>b){localStorage.setItem(KEY,bpm); showBest();
-    hintEl.innerHTML=`🎉 New best — <b>${bpm}/min</b> held clean! When it's easy, nudge +2.`;}
-  else hintEl.innerHTML=`Saved. Best stays <b>${b}/min</b>. Push past it when ${bpm} feels effortless.`;
+  const b=+(localStorage.getItem(keyFor())||0);
+  if(bpm>b){localStorage.setItem(keyFor(),bpm); showBest();
+    hintEl.innerHTML=`🎉 New best for ${pair[0]}⇄${pair[1]} — <b>${bpm}/min</b>! When it's easy, nudge +2.`;}
+  else hintEl.innerHTML=`Saved. Best for ${pair[0]}⇄${pair[1]} stays <b>${b}/min</b>.`;
 };
-showRate(); showBest();
+
+loadPair(); showRate();
 </script>
 </body>
 </html>
