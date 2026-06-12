@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 5 · Fast Car — the intro riff</title>
+<style>
+  :root{--ink:#2b2620;--soft:#6b6256;--line:#e4dccc;--paper:#fbf7ef;--accent:#a6612f;--accent2:#3b7a5a;--card:#fffdf8;--gold:#caa64a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font:17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;padding:48px 20px}
+  .wrap{max-width:760px;margin:0 auto}
+  .kicker{letter-spacing:.18em;text-transform:uppercase;font-size:12px;color:var(--accent);font-weight:700;margin:0 0 6px}
+  h1{font-size:31px;line-height:1.12;margin:0 0 8px;font-weight:780}
+  .sub{color:var(--soft);margin:0 0 8px;font-size:18px}
+  .why{background:#fcf3e8;border-radius:12px;padding:14px 18px;color:#6a4a2c;font-size:15px;margin:18px 0 30px;border:1px solid #f0e2cf}
+  .capo{display:inline-block;background:var(--accent);color:#fff;font-weight:700;font-size:14px;padding:6px 14px;border-radius:999px;margin:0 0 18px}
+  h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:38px 0 14px;font-weight:740}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin:0 0 16px}
+  .chords{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+  .chord{text-align:center}.chord .name{font-weight:780;font-size:18px;margin-bottom:6px}
+  ol{margin:0;padding-left:20px}li{margin:0 0 9px}
+  cite{display:block;font-style:normal;color:var(--soft);font-size:13px;margin-top:8px}
+  a{color:var(--accent)}
+  .cG{color:var(--accent)}.cD{color:var(--accent2)}.cEm{color:#8a5a86}.cC{color:#b08400}
+  .player{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;text-align:center}
+  .nowlbl{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin:0 0 2px}
+  .now{font-size:54px;font-weight:800;line-height:1;margin:0 0 12px;transition:transform .08s,color .1s}
+  .now.beat{transform:scale(1.06)}
+  .strings{max-width:340px;margin:0 auto 14px;display:flex;flex-direction:column;gap:7px}
+  .str{display:flex;align-items:center;gap:10px}
+  .str .lab{width:26px;text-align:right;font-size:13px;color:var(--soft);font-weight:700}
+  .str .line{flex:1;height:10px;border-radius:5px;background:#ece4d4;transition:background .07s}
+  .str.on .line{background:var(--accent2)}
+  .str .fing{width:30px;text-align:left;font-weight:800;color:var(--accent2);font-size:18px;opacity:0;transition:opacity .07s}
+  .str.on .fing{opacity:1}
+  .rate{display:flex;align-items:center;justify-content:center;gap:18px;margin:8px 0 18px}
+  .rate button{background:#efe7d8;color:var(--ink);width:46px;height:46px;border-radius:50%;font-size:24px;border:none;cursor:pointer;padding:0}
+  .rate .val b{font-size:32px;font-weight:780;color:var(--accent);font-variant-numeric:tabular-nums}
+  .rate .val span{display:block;font-size:12px;color:var(--soft);letter-spacing:.08em;text-transform:uppercase}
+  .big{background:var(--accent2);color:#fff;font-size:20px;padding:16px 40px;border:none;border-radius:18px;cursor:pointer;font-weight:680;width:100%;max-width:340px}
+  .hint{color:var(--soft);font-size:14px;margin:14px 0 0}
+  .honest{border-left:3px solid var(--accent);background:#fcf3e8;border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0 0;font-size:15px;color:#6a4a2c}
+  .ask{border-left:3px solid var(--accent2);background:#eef6f0;border-radius:0 10px 10px 0;padding:14px 18px;margin:24px 0 0;font-size:15px;color:#2f5742}
+  .rule{border-left:3px solid var(--gold);background:#fcf7e9;border-radius:0 10px 10px 0;padding:14px 18px;margin:24px 0 0;font-size:15px;color:#6a5320}
+  footer{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;color:var(--soft);font-size:13px}
+  @media print{.player .rate,.player .big{display:none}body{background:#fff;padding:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">Lesson 5 · The song</p>
+  <h1>Fast Car — the intro riff</h1>
+  <p class="sub">Tracy Chapman · the fingerpicked loop that runs the whole song.</p>
+  <span class="capo">🎸 Capo on fret 2</span>
+  <div class="why">
+    <b>Now you put it together.</b> Fast Car is built on one fingerpicked loop —
+    <b>Cmaj7 → G → Em → D</b>, repeated — and you now have the picking hand
+    (Lesson 4) and the chords. This lesson rolls them into the song's signature
+    arpeggio. It's a step up, so the plan is the same as always: dead slow first,
+    tempo later.
+    <cite>Chords, capo &amp; structure verified:
+    <a href="https://www.justinguitar.com/songs/tracy-chapman-fast-car-chords-tabs-guitar-lesson-bs-802">JustinGuitar</a> ·
+    <a href="https://tabs.ultimate-guitar.com/tab/tracy-chapman/fast-car-chords-1044807">Ultimate Guitar</a>.</cite>
+  </div>
+
+  <h2>The chords (with capo at fret 2)</h2>
+  <div class="card">
+    <div class="chords">
+      <div class="chord"><div class="name cC">Cmaj7</div><div id="dC"></div></div>
+      <div class="chord"><div class="name cG">G</div><div id="dG"></div></div>
+      <div class="chord"><div class="name cEm">Em</div><div id="dEm"></div></div>
+      <div class="chord"><div class="name cD">D</div><div id="dD"></div></div>
+    </div>
+    <p style="text-align:center;color:var(--soft);font-size:14px;margin:12px 0 0">
+      Same open shapes you know — the capo just shifts them up. Shapes shown
+      relative to the capo (treat fret 2 as the nut).</p>
+  </div>
+
+  <h2>The arpeggio — play along (≈10 min)</h2>
+  <div class="player">
+    <p class="nowlbl">chord</p>
+    <p class="now cC" id="now">Cmaj7</p>
+    <div class="strings" id="strings"></div>
+    <div class="rate">
+      <button id="slower" aria-label="slower">−</button>
+      <div class="val"><b id="bpm">48</b><span>plucks / min</span></div>
+      <button id="faster" aria-label="faster">+</button>
+    </div>
+    <button class="big" id="play">Start</button>
+    <p class="hint" id="hint">Thumb on the bass, then roll up the strings with
+    i‑m‑a and back. Let the chord changes happen while the picking keeps rolling.</p>
+  </div>
+
+  <div class="honest">
+    <b>Straight talk about this trainer.</b> What it plays is a clean rolling
+    arpeggio over Fast Car's real chords — it builds the exact right-hand motion
+    and the feel of the song. The <em>iconic</em> recorded intro adds a few
+    specific melody notes and a signature hammer‑on/pull‑off on top. Once this
+    arpeggio flows, learn those note‑for‑note from the full tab:
+    <a href="https://www.justinguitar.com/songs/tracy-chapman-fast-car-chords-tabs-guitar-lesson-bs-802">JustinGuitar lesson</a> ·
+    <a href="https://www.songsterr.com/a/wsa/tracy-chapman-fast-car-tab-s167">Songsterr (with playback)</a>.
+  </div>
+
+  <div class="rule">
+    <b>The song is ~104 bpm — don't start there.</b> Begin painfully slow, get the
+    arpeggio even and every note ringing, and let speed arrive on its own. Rushing
+    a riff this exposed just teaches the mistakes.
+  </div>
+
+  <h2>How to practise</h2>
+  <div class="card">
+    <ol>
+      <li><b>No capo, one chord</b> first if it's shaky — go back to Lesson 4 and
+      get p‑i‑m‑i effortless, then come here.</li>
+      <li><b>Capo on, slow loop.</b> Run the trainer at the slowest tempo, just
+      Cmaj7→G→Em→D, picking hand rolling, fretting hand changing underneath.</li>
+      <li><b>Creep the tempo up</b> a little at a time. When it's smooth, open the
+      full tab and add the melody notes on top.</li>
+      <li><b>Play to the record</b> — the real milestone.</li>
+    </ol>
+  </div>
+
+  <div class="ask">
+    <b>Ask your teacher.</b> Capo buzzing the strings? Arpeggio uneven? Want me to
+    break the exact recorded riff into its own micro-lesson with the melody notes?
+    Just say so — this is a big one and worth taking in pieces.
+  </div>
+
+  <footer>
+    Lesson 5 of an ongoing plan · builds on
+    <a href="0004-first-fingerpicking.html">Lesson 4</a> ·
+    hand reference <a href="../reference/fingerpicking-hand.html">fingerpicking-hand.html</a> ·
+    sources in <a href="../RESOURCES.md">RESOURCES.md</a>.
+  </footer>
+</div>
+
+<script>
+const CHORDS={
+  'Cmaj7':{frets:[-1,3,2,0,0,0],fingers:[0,3,2,0,0,0]},
+  'G':{frets:[3,2,0,0,0,3],fingers:[2,1,0,0,0,4]},
+  'Em':{frets:[0,2,2,0,0,0],fingers:[0,2,3,0,0,0]},
+  'D':{frets:[-1,-1,0,2,3,2],fingers:[0,0,0,1,3,2]}
+};
+const CLASS={'Cmaj7':'cC','G':'cG','Em':'cEm','D':'cD'};
+const BASS={'Cmaj7':5,'G':6,'Em':6,'D':4};
+function drawChord(el,name){
+  const {frets,fingers}=CHORDS[name];
+  const W=130,H=150,L=20,T=30,cols=6,rows=4;
+  const dx=(W-2*L)/(cols-1),dy=(H-T-12)/rows,x=i=>L+i*dx,y=f=>T+(f-0.5)*dy;
+  let s=`<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`;
+  s+=`<rect x="${L-2}" y="${T-6}" width="${W-2*L+4}" height="6" rx="2" fill="#2b2620"/>`;
+  for(let f=0;f<=rows;f++)s+=`<line x1="${L}" y1="${T+f*dy}" x2="${W-L}" y2="${T+f*dy}" stroke="#c9bfa9" stroke-width="1.3"/>`;
+  for(let c=0;c<cols;c++)s+=`<line x1="${x(c)}" y1="${T}" x2="${x(c)}" y2="${T+rows*dy}" stroke="#c9bfa9" stroke-width="1.3"/>`;
+  for(let st=0;st<6;st++){const fr=frets[st];
+    if(fr===-1)s+=`<text x="${x(st)}" y="${T-11}" text-anchor="middle" font-size="12" fill="#9a8f7c">✕</text>`;
+    else if(fr===0)s+=`<circle cx="${x(st)}" cy="${T-12}" r="5" fill="none" stroke="#6b6256" stroke-width="1.5"/>`;
+    else{s+=`<circle cx="${x(st)}" cy="${y(fr)}" r="8" fill="#a6612f"/>`;
+      if(fingers[st])s+=`<text x="${x(st)}" y="${y(fr)+4}" text-anchor="middle" font-size="10" fill="#fff" font-weight="700">${fingers[st]}</text>`;}}
+  el.innerHTML=s+'</svg>';
+}
+drawChord(dC,'Cmaj7');drawChord(dG,'G');drawChord(dEm,'Em');drawChord(dD,'D');
+
+const STR=['e','B','G','D','A','E'];
+const strEl=document.getElementById('strings');
+STR.forEach((n,k)=>{const d=document.createElement('div');d.className='str';d.dataset.s=k+1;
+  d.innerHTML=`<span class="lab">${n}</span><span class="line"></span><span class="fing"></span>`;strEl.appendChild(d);});
+const rows=[...strEl.children];
+
+// rolling arpeggio per chord: thumb bass, up i-m-a, back m-i  (6 plucks/chord)
+function pat(chord){const b=BASS[chord];
+  return [{s:b,f:'p'},{s:3,f:'i'},{s:2,f:'m'},{s:1,f:'a'},{s:2,f:'m'},{s:3,f:'i'}];}
+const LOOP=['Cmaj7','G','Em','D'];
+let seq=[]; LOOP.forEach(c=>pat(c).forEach(p=>seq.push({...p,chord:c})));
+
+let bpm=48, step=0, iv=null, running=false, ac=null;
+const nowEl=document.getElementById('now'), bpmEl=document.getElementById('bpm'),
+      playBtn=document.getElementById('play'), hintEl=document.getElementById('hint');
+function pluck(s){
+  if(!ac) ac=new (window.AudioContext||window.webkitAudioContext)();
+  const o=ac.createOscillator(), g=ac.createGain(), t=ac.currentTime;
+  o.type='triangle'; o.frequency.value=180*Math.pow(1.18,(6-s));
+  g.gain.setValueAtTime(0.001,t); g.gain.exponentialRampToValueAtTime(0.35,t+0.005);
+  g.gain.exponentialRampToValueAtTime(0.001,t+0.22);
+  o.connect(g).connect(ac.destination); o.start(t); o.stop(t+0.24);
+}
+function tick(){
+  const st=seq[step]; pluck(st.s);
+  nowEl.textContent=st.chord; nowEl.className='now beat '+CLASS[st.chord];
+  setTimeout(()=>nowEl.classList.remove('beat'),90);
+  rows.forEach(r=>{const on=(+r.dataset.s===st.s); r.classList.toggle('on',on);
+    r.querySelector('.fing').textContent = on?st.f:'';});
+  step=(step+1)%seq.length;
+}
+function start(){running=true;playBtn.textContent='Stop';step=0;
+  hintEl.innerHTML='Roll with the glow. Thumb keeps the pulse on the bass; i‑m‑a roll the top. Slow and even.';
+  tick(); iv=setInterval(tick,60000/bpm);}
+function stop(){running=false;clearInterval(iv);iv=null;playBtn.textContent='Start';
+  rows.forEach(r=>{r.classList.remove('on');r.querySelector('.fing').textContent='';});}
+playBtn.onclick=()=>running?stop():start();
+function setBpm(v){bpm=Math.max(28,Math.min(130,v));bpmEl.textContent=bpm;
+  if(running){clearInterval(iv);iv=setInterval(tick,60000/bpm);}}
+document.getElementById('faster').onclick=()=>setBpm(bpm+4);
+document.getElementById('slower').onclick=()=>setBpm(bpm-4);
+bpmEl.textContent=bpm;
+</script>
+</body>
+</html>

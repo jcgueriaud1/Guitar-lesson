@@ -23,10 +23,17 @@ Preferences and working notes for how to teach this user.
 ## Skill arc (rough, revise freely)
 1. Clean, fast open-chord changes (One Minute Changes). [Lesson 1]
 2. Changes in time with a steady strum (chord + rhythm together). [Lesson 2]
-3. First full song — Knockin' on Heaven's Door, G/D/Am/C. [Lesson 3] ← current
-4. Basic Travis picking on a single chord, then across a chord change.
-5. A full fingerpicked song.
-6. Switching strum ↔ fingerpick within one song.
+3. First full song — Knockin' on Heaven's Door, G/D/Am/C. [Lesson 3]
+4. First fingerpicking — p-i-m-i arpeggio on the Fast Car chords. [Lesson 4] ← current
+5. Fast Car intro riff — fingerpicked Cmaj7-G-Em-D, capo 2. [Lesson 5]
+6. (later) Exact Fast Car recorded riff with melody notes; full song structure.
+7. (later) Switching strum ↔ fingerpick within one song.
+
+## Active song goal
+- **Fast Car (Tracy Chapman)** — user's chosen target (2026-06-12). Capo 2,
+  chords Cmaj7/G/Em/D, ~104 bpm, fingerpicked. Staged: L4 builds the picking
+  hand, L5 the arpeggio over the loop, then the exact riff later. It's a step up
+  from current level, so foundations-first pacing matters more than ever.
 Each rung is reinforced by learning real songs, easy → advanced.
 
 ## Format notes

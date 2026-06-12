@@ -34,6 +34,13 @@ drawn from here, not from guesses.
   **Use for:** song suggestions, "is my hand position right" video critiques,
   troubleshooting plateaus. (Reddit — verify advice against the sources above.)
 
+## Songs in progress
+
+- **Fast Car — Tracy Chapman** (capo 2; Cmaj7, G, Em, D; ~104 bpm; fingerpicked).
+  - [JustinGuitar song lesson](https://www.justinguitar.com/songs/tracy-chapman-fast-car-chords-tabs-guitar-lesson-bs-802) — chords, structure, video.
+  - [Songsterr tab (with playback)](https://www.songsterr.com/a/wsa/tracy-chapman-fast-car-tab-s167) — exact intro riff, note for note.
+  - Use for: the precise recorded riff once the Lesson 5 arpeggio flows.
+
 ## Gaps
 - No verified source yet for *strum-to-fingerpick transitions within one song* —
   find a song-based example when we reach that milestone.

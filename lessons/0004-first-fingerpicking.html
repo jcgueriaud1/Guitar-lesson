@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 4 · First Fingerpicking</title>
+<style>
+  :root{--ink:#2b2620;--soft:#6b6256;--line:#e4dccc;--paper:#fbf7ef;--accent:#a6612f;--accent2:#3b7a5a;--card:#fffdf8;--gold:#caa64a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font:17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;padding:48px 20px}
+  .wrap{max-width:760px;margin:0 auto}
+  .kicker{letter-spacing:.18em;text-transform:uppercase;font-size:12px;color:var(--accent);font-weight:700;margin:0 0 6px}
+  h1{font-size:32px;line-height:1.12;margin:0 0 8px;font-weight:780}
+  .sub{color:var(--soft);margin:0 0 8px;font-size:18px}
+  .why{background:#fcf3e8;border-radius:12px;padding:14px 18px;color:#6a4a2c;font-size:15px;margin:18px 0 34px;border:1px solid #f0e2cf}
+  h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:38px 0 14px;font-weight:740}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin:0 0 16px}
+  .chords{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+  .chord{text-align:center}.chord .name{font-weight:780;font-size:18px;margin-bottom:6px}
+  ol{margin:0;padding-left:20px}li{margin:0 0 9px}
+  cite{display:block;font-style:normal;color:var(--soft);font-size:13px;margin-top:8px}
+  a{color:var(--accent)}
+  .cG{color:var(--accent)}.cD{color:var(--accent2)}.cEm{color:#8a5a86}.cC{color:#b08400}
+  /* picking trainer */
+  .player{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;text-align:center}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin-bottom:16px}
+  .seg button{background:var(--card);border:none;padding:9px 16px;font:inherit;font-size:14px;cursor:pointer;color:var(--soft)}
+  .seg button.active{background:var(--accent);color:#fff;font-weight:680}
+  .nowlbl{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin:0 0 2px}
+  .now{font-size:54px;font-weight:800;line-height:1;margin:0 0 12px;transition:transform .08s,color .1s}
+  .now.beat{transform:scale(1.06)}
+  .strings{max-width:340px;margin:0 auto 14px;display:flex;flex-direction:column;gap:7px}
+  .str{display:flex;align-items:center;gap:10px}
+  .str .lab{width:26px;text-align:right;font-size:13px;color:var(--soft);font-weight:700}
+  .str .line{flex:1;height:10px;border-radius:5px;background:#ece4d4;position:relative;transition:background .07s}
+  .str.on .line{background:var(--accent2)}
+  .str .fing{width:30px;text-align:left;font-weight:800;color:var(--accent2);font-size:18px;opacity:0;transition:opacity .07s}
+  .str.on .fing{opacity:1}
+  .rate{display:flex;align-items:center;justify-content:center;gap:18px;margin:8px 0 18px}
+  .rate button{background:#efe7d8;color:var(--ink);width:46px;height:46px;border-radius:50%;font-size:24px;border:none;cursor:pointer;padding:0}
+  .rate .val b{font-size:32px;font-weight:780;color:var(--accent);font-variant-numeric:tabular-nums}
+  .rate .val span{display:block;font-size:12px;color:var(--soft);letter-spacing:.08em;text-transform:uppercase}
+  .big{background:var(--accent2);color:#fff;font-size:20px;padding:16px 40px;border:none;border-radius:18px;cursor:pointer;font-weight:680;width:100%;max-width:340px}
+  .hint{color:var(--soft);font-size:14px;margin:14px 0 0}
+  .rule{border-left:3px solid var(--gold);background:#fcf7e9;border-radius:0 10px 10px 0;padding:14px 18px;margin:26px 0 0;font-size:15px;color:#6a5320}
+  .ask{border-left:3px solid var(--accent2);background:#eef6f0;border-radius:0 10px 10px 0;padding:14px 18px;margin:24px 0 0;font-size:15px;color:#2f5742}
+  footer{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;color:var(--soft);font-size:13px}
+  @media print{.player .rate,.player .big,.seg{display:none}body{background:#fff;padding:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">Lesson 4 · Foundation</p>
+  <h1>First Fingerpicking</h1>
+  <p class="sub">Meet your picking hand — on the chords for <em>Fast Car</em>.</p>
+  <div class="why">
+    <b>Why now, and why these chords.</b> Your target song, <em>Fast Car</em>, is
+    fingerpicked — so before the famous riff (next lesson), you need the picking
+    hand working on its own. Good news: it uses four easy chords you nearly know —
+    <b>Cmaj7, G, Em, D</b> — so we build the hand <em>on the actual song's chords</em>.
+    One thing this lesson: a steady, even arpeggio. No capo needed yet.
+  </div>
+
+  <h2>Your picking hand</h2>
+  <div class="card">
+    Each finger owns its own strings — learn this once:
+    <ol style="margin-top:10px">
+      <li><b>Thumb (p)</b> → the bass strings (low E, A, D). It plays the chord's
+      root and keeps the pulse.</li>
+      <li><b>Index (i)</b> → the G string.</li>
+      <li><b>Middle (m)</b> → the B string.</li>
+    </ol>
+    The pattern we'll drill is <b>p – i – m – i</b> (thumb, index, middle, index),
+    over and over. Thumb steady underneath; fingers light on top.
+    <cite>Full hand setup: <a href="../reference/fingerpicking-hand.html">reference/fingerpicking-hand.html</a>.</cite>
+  </div>
+
+  <h2>The chords</h2>
+  <div class="card">
+    <div class="chords">
+      <div class="chord"><div class="name cC">Cmaj7</div><div id="dC"></div></div>
+      <div class="chord"><div class="name cG">G</div><div id="dG"></div></div>
+      <div class="chord"><div class="name cEm">Em</div><div id="dEm"></div></div>
+      <div class="chord"><div class="name cD">D</div><div id="dD"></div></div>
+    </div>
+    <p style="text-align:center;color:var(--soft);font-size:14px;margin:12px 0 0">
+      Cmaj7 = your C shape with the <b>index lifted</b> (B string rings open). The
+      thumb's bass note differs per chord — the trainer shows it.</p>
+  </div>
+
+  <h2>The trainer — follow the plucks (≈8 min)</h2>
+  <div class="player">
+    <div class="seg" id="modeSeg">
+      <button data-m="one" class="active">One chord (Em)</button>
+      <button data-m="loop">Full loop (Cmaj7 G Em D)</button>
+    </div>
+    <p class="nowlbl">chord</p>
+    <p class="now cEm" id="now">Em</p>
+    <div class="strings" id="strings"></div>
+    <div class="rate">
+      <button id="slower" aria-label="slower">−</button>
+      <div class="val"><b id="bpm">44</b><span>plucks / min</span></div>
+      <button id="faster" aria-label="faster">+</button>
+    </div>
+    <button class="big" id="play">Start</button>
+    <p class="hint" id="hint">The glowing string + letter shows which string to
+    pluck and with which finger (p/i/m). Go slow enough that every note rings
+    clean. Watch the thumb keep the beat.</p>
+  </div>
+
+  <div class="rule">
+    <b>Consistency over speed — always.</b> A slow, even arpeggio where every note
+    rings is the whole skill. Tense, rushed plucking builds nothing. Stay slow
+    until it's automatic, then creep the tempo up.
+  </div>
+
+  <h2>How to practise</h2>
+  <div class="card">
+    <ol>
+      <li>Start on <b>One chord (Em)</b> at the slowest tempo. Just get p‑i‑m‑i
+      even and clean, eyes on the picking hand.</li>
+      <li>Try <b>Cmaj7</b>, then <b>G</b> and <b>D</b> the same way — notice the
+      thumb moves to a different bass string for each.</li>
+      <li>Switch to <b>Full loop</b> and let it change chords for you. Keep the
+      picking pattern going while your fretting hand changes — exactly the
+      “keep moving” idea from Lesson 2, now for the picking hand.</li>
+    </ol>
+  </div>
+
+  <div class="ask">
+    <b>Ask your teacher.</b> Thumb hitting the wrong string? Notes muted or buzzy?
+    Hand cramping? Tell me. When p‑i‑m‑i flows around the full loop without
+    stopping, you're ready for <a href="0005-fast-car-intro-riff.html">Lesson 5 —
+    the actual Fast Car riff</a>.
+  </div>
+
+  <footer>
+    Lesson 4 of an ongoing plan · hand reference
+    <a href="../reference/fingerpicking-hand.html">fingerpicking-hand.html</a> ·
+    sources in <a href="../RESOURCES.md">RESOURCES.md</a>.
+  </footer>
+</div>
+
+<script>
+// chord shapes (no capo). frets low E->high e, -1 mute / 0 open.
+const CHORDS={
+  'Cmaj7':{frets:[-1,3,2,0,0,0],fingers:[0,3,2,0,0,0]},
+  'G':{frets:[3,2,0,0,0,3],fingers:[2,1,0,0,0,4]},
+  'Em':{frets:[0,2,2,0,0,0],fingers:[0,2,3,0,0,0]},
+  'D':{frets:[-1,-1,0,2,3,2],fingers:[0,0,0,1,3,2]}
+};
+const CLASS={'Cmaj7':'cC','G':'cG','Em':'cEm','D':'cD'};
+// bass string (1=high e ... 6=low E) the thumb plays per chord
+const BASS={'Cmaj7':5,'G':6,'Em':6,'D':4};
+
+function drawChord(el,name){
+  const {frets,fingers}=CHORDS[name];
+  const W=130,H=150,L=20,T=30,cols=6,rows=4;
+  const dx=(W-2*L)/(cols-1),dy=(H-T-12)/rows,x=i=>L+i*dx,y=f=>T+(f-0.5)*dy;
+  let s=`<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`;
+  s+=`<rect x="${L-2}" y="${T-6}" width="${W-2*L+4}" height="6" rx="2" fill="#2b2620"/>`;
+  for(let f=0;f<=rows;f++)s+=`<line x1="${L}" y1="${T+f*dy}" x2="${W-L}" y2="${T+f*dy}" stroke="#c9bfa9" stroke-width="1.3"/>`;
+  for(let c=0;c<cols;c++)s+=`<line x1="${x(c)}" y1="${T}" x2="${x(c)}" y2="${T+rows*dy}" stroke="#c9bfa9" stroke-width="1.3"/>`;
+  for(let st=0;st<6;st++){const fr=frets[st];
+    if(fr===-1)s+=`<text x="${x(st)}" y="${T-11}" text-anchor="middle" font-size="12" fill="#9a8f7c">✕</text>`;
+    else if(fr===0)s+=`<circle cx="${x(st)}" cy="${T-12}" r="5" fill="none" stroke="#6b6256" stroke-width="1.5"/>`;
+    else{s+=`<circle cx="${x(st)}" cy="${y(fr)}" r="8" fill="#a6612f"/>`;
+      if(fingers[st])s+=`<text x="${x(st)}" y="${y(fr)+4}" text-anchor="middle" font-size="10" fill="#fff" font-weight="700">${fingers[st]}</text>`;}}
+  el.innerHTML=s+'</svg>';
+}
+drawChord(dC,'Cmaj7');drawChord(dG,'G');drawChord(dEm,'Em');drawChord(dD,'D');
+
+// string display: rows top->bottom = high e .. low E  (string numbers 1..6)
+const STR=['e','B','G','D','A','E'];               // index 0 = string 1 (high e)
+const strEl=document.getElementById('strings');
+STR.forEach((n,k)=>{
+  const d=document.createElement('div'); d.className='str'; d.dataset.s=k+1;
+  d.innerHTML=`<span class="lab">${n}</span><span class="line"></span><span class="fing"></span>`;
+  strEl.appendChild(d);
+});
+const rows=[...strEl.children];
+
+// build the p-i-m-i pattern for a chord: returns array of {s, f}
+function pat(chord){const b=BASS[chord];
+  return [{s:b,f:'p'},{s:3,f:'i'},{s:2,f:'m'},{s:3,f:'i'}];}
+function sequence(mode){
+  const chords = mode==='one' ? ['Em'] : ['Cmaj7','G','Em','D'];
+  const seq=[]; chords.forEach(c=>pat(c).forEach(p=>seq.push({...p,chord:c}))); return seq;
+}
+
+let mode='one', seq=sequence('one'), bpm=44, step=0, iv=null, running=false, ac=null;
+const nowEl=document.getElementById('now'), bpmEl=document.getElementById('bpm'),
+      playBtn=document.getElementById('play'), hintEl=document.getElementById('hint');
+
+function pluck(s){ // pluck sound: lower string = lower pitch
+  if(!ac) ac=new (window.AudioContext||window.webkitAudioContext)();
+  const o=ac.createOscillator(), g=ac.createGain(), t=ac.currentTime;
+  o.type='triangle'; o.frequency.value=180*Math.pow(1.18,(6-s));   // s=6 low .. s=1 high
+  g.gain.setValueAtTime(0.001,t); g.gain.exponentialRampToValueAtTime(0.35,t+0.005);
+  g.gain.exponentialRampToValueAtTime(0.001,t+0.22);
+  o.connect(g).connect(ac.destination); o.start(t); o.stop(t+0.24);
+}
+const FNAME={p:'p',i:'i',m:'m',a:'a'};
+function tick(){
+  const st=seq[step]; pluck(st.s);
+  nowEl.textContent=st.chord; nowEl.className='now beat '+CLASS[st.chord];
+  setTimeout(()=>nowEl.classList.remove('beat'),90);
+  rows.forEach(r=>{const on=(+r.dataset.s===st.s); r.classList.toggle('on',on);
+    r.querySelector('.fing').textContent = on?FNAME[st.f]:'';});
+  step=(step+1)%seq.length;
+}
+function start(){running=true;playBtn.textContent='Stop';step=0;
+  hintEl.innerHTML='Follow the glow: pluck that string with the shown finger. Keep it slow and even.';
+  tick(); iv=setInterval(tick,60000/bpm);}
+function stop(){running=false;clearInterval(iv);iv=null;playBtn.textContent='Start';
+  rows.forEach(r=>{r.classList.remove('on');r.querySelector('.fing').textContent='';});}
+playBtn.onclick=()=>running?stop():start();
+function setBpm(v){bpm=Math.max(28,Math.min(120,v));bpmEl.textContent=bpm;
+  if(running){clearInterval(iv);iv=setInterval(tick,60000/bpm);}}
+document.getElementById('faster').onclick=()=>setBpm(bpm+4);
+document.getElementById('slower').onclick=()=>setBpm(bpm-4);
+document.querySelectorAll('#modeSeg button').forEach(b=>{b.onclick=()=>{
+  document.querySelectorAll('#modeSeg button').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active'); mode=b.dataset.m; seq=sequence(mode); step=0;
+  if(!running){nowEl.textContent=seq[0].chord; nowEl.className='now '+CLASS[seq[0].chord];}};});
+bpmEl.textContent=bpm;
+</script>
+</body>
+</html>
